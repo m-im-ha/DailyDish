@@ -16,7 +16,7 @@ const googleProvider = new GoogleAuthProvider();
 function Foodprovider({ children }) {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
-  console.log(`user from provider: `, user);
+//   console.log(`user from provider: `, user);
 
   function createUser(email, password) {
     setLoading(true);
