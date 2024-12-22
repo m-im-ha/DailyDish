@@ -44,6 +44,7 @@ function AddFood() {
         `http://localhost:5000/foods/addfood`,
         foodData,
       );
+      console.log(response);
       console.log(`food added successfully : `, response.data);
       Swal.fire({
         title: "Food added successfully!!",
