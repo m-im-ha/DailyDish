@@ -13,12 +13,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { useContext, useState } from "react";
 import { FoodContext } from "../provider/Foodprovider";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 function AddFood() {
   const { user } = useContext(FoodContext);
   const navigate = useNavigate();
 
-  function handleAddFood(e) {
+  async function handleAddFood(e) {
     e.preventDefault();
     const form = new FormData(e.target);
 
@@ -34,18 +35,31 @@ function AddFood() {
         name: form.get("donatorName"),
         email: form.get("donatorEmail"),
       },
-      foodStatus: "available",
+      foodStatus: form.get("foodStatus"),
     };
-
     console.log(foodData);
 
-    Swal.fire({
-      title: "Movie added successfully!!",
-      icon: "success",
-      confirmButtonColor: "Ok",
-    });
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/foods/addfood`,
+        foodData,
+      );
+      console.log(`food added successfully : `, response.data);
+      Swal.fire({
+        title: "Food added successfully!!",
+        icon: "success",
+        confirmButtonColor: "Ok",
+      });
 
-    navigate("/availablefoods");
+      navigate("/availablefoods");
+    } catch (error) {
+      console.error("Error to add food", error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Error while adding food!",
+      });
+    }
   }
 
   return (
@@ -143,8 +157,8 @@ function AddFood() {
               ></textarea>
             </div>
 
-            {/* Donator Details */}
-            <div className="relative">
+             {/* Donator Details */}
+             <div className="relative">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3">
                 <FaUser className="text-gray-400" />
               </div>
@@ -181,6 +195,18 @@ function AddFood() {
                 className="w-full rounded-xl border border-gray-600 bg-gray-700 py-3 pl-10 pr-4 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400"
                 required
               />
+            </div>
+
+            {/* Food Status */}
+            <div className="relative">
+              <select
+                name="foodStatus"
+                className="w-full rounded-xl border border-gray-600 bg-gray-700 py-3 text-gray-200 focus:outline-none focus:ring-2 focus:ring-pink-400"
+                required
+              >
+                <option value="available">Available</option>
+                <option value="unavailable">Unavailable</option>
+              </select>
             </div>
 
             {/* Submit Button */}
