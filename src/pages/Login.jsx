@@ -10,6 +10,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useContext, useState } from "react";
 import { FoodContext } from "../provider/Foodprovider";
+import Swal from "sweetalert2";
 
 function Login() {
   const { loginUser, setUser, signInWithGoogle, setLoading } =
@@ -34,6 +35,7 @@ function Login() {
         setUser({ ...user });
 
         setLoading(false);
+        Swal.fire("Success! You're now logged in. Enjoy exploring our platform!");
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
@@ -56,6 +58,7 @@ function Login() {
     signInWithGoogle()
       .then((result) => {
         setUser(result.user);
+        Swal.fire("Success! You're now logged in. Enjoy exploring our platform!");
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {

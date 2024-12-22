@@ -2,6 +2,7 @@ import { FaGoogle, FaEnvelope, FaLock, FaUser, FaImage } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Swal from 'sweetalert2'
 import { useContext } from "react";
 import { FoodContext } from "../provider/Foodprovider";
 
@@ -55,6 +56,7 @@ function Register() {
         });
       })
       .then(() => {
+        Swal.fire("Welcome aboard! Let's make the most of your experience.");
         navigate("/", { replace: true });
       })
       .catch((error) => console.error("Error during registration:", error));
@@ -69,6 +71,7 @@ function Register() {
           displayName: userData.displayName || "User",
           photoURL: userData.photoURL || "",
         });
+        Swal.fire("Welcome aboard! Let's make the most of your experience.");
         navigate("/");
       })
       .catch((error) => {
