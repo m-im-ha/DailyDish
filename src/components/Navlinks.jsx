@@ -34,11 +34,12 @@ function Navlinks() {
   };
 
   const handleNavigation = (targetPath) => {
-    if (location.pathname === targetPath) {
-      setLoading(false);
-    } else {
-      setLoading(true); 
-    }
+    console.log(targetPath)
+    // if (location.pathname === targetPath) {
+    //   setLoading(false);
+    // } else {
+    //   setLoading(true); 
+    // }
     setIsMenuOpen(false);
   };
 
