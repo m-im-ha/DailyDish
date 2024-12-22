@@ -63,7 +63,12 @@ function Register() {
   function handleSignInWithGoogle() {
     signInWithGoogle()
       .then((result) => {
-        setUser(result.user);
+        const userData = result.user;
+        setUser({
+          ...userData,
+          displayName: userData.displayName || "User",
+          photoURL: userData.photoURL || "",
+        });
         navigate("/");
       })
       .catch((error) => {
