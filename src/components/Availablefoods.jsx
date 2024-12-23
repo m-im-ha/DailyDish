@@ -21,7 +21,7 @@ function Availablefoods() {
   }, []);
   return (
     <div className="grid grid-cols-3 gap-5">
-      {availablefoods.map((food) => food.foodStatus === "available" && (
+      {availablefoods?.map((food) => food.foodStatus === "available" && (
         <div key={food._id}>
           <FoodCard food={food} />
         </div>

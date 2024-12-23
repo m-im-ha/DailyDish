@@ -8,11 +8,12 @@ import Availablefoods from "../components/Availablefoods";
 import Addfood from "../pages/Addfood";
 import Managemyfoods from "../components/Managemyfoods";
 import Myfoodrequest from "../components/Myfoodrequest";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
     element: <Applayout />,
-    errorElement : <Errorpage/>,
+    errorElement: <Errorpage />,
     children: [
       {
         path: "/",
@@ -20,19 +21,31 @@ export const router = createBrowserRouter([
       },
       {
         path: "/availablefoods",
-        element: <Availablefoods/>,
+        element: <Availablefoods />,
       },
       {
         path: "/addfood",
-        element: <Addfood/>,
+        element: (
+          <PrivateRoute>
+            <Addfood />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/managemyfoods",
-        element: <Managemyfoods/>,
+        element: (
+          <PrivateRoute>
+            <Managemyfoods />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/myfoodrequest",
-        element: <Myfoodrequest/>,
+        element: (
+          <PrivateRoute>
+            <Myfoodrequest />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/register",

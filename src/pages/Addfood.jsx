@@ -31,9 +31,9 @@ function AddFood() {
       expiredDate: form.get("expiredDate"),
       additionalNotes: form.get("additionalNotes"),
       donator: {
-        image: form.get("donatorImage"),
-        name: form.get("donatorName"),
-        email: form.get("donatorEmail"),
+        image: user.photoURL,
+        name: user.displayName,
+        email: user.email,
       },
       foodStatus: form.get("foodStatus"),
     };
@@ -159,7 +159,7 @@ function AddFood() {
             </div>
 
              {/* Donator Details */}
-             <div className="relative">
+             {/* <div className="relative">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3">
                 <FaUser className="text-gray-400" />
               </div>
@@ -170,9 +170,9 @@ function AddFood() {
                 className="w-full rounded-xl border border-gray-600 bg-gray-700 py-3 pl-10 pr-4 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400"
                 required
               />
-            </div>
+            </div> */}
 
-            <div className="relative">
+            {/* <div className="relative">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3">
                 <FaEnvelope className="text-gray-400" />
               </div>
@@ -183,9 +183,9 @@ function AddFood() {
                 className="w-full rounded-xl border border-gray-600 bg-gray-700 py-3 pl-10 pr-4 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400"
                 required
               />
-            </div>
+            </div> */}
 
-            <div className="relative">
+            {/* <div className="relative">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3">
                 <FaImage className="text-gray-400" />
               </div>
@@ -196,7 +196,7 @@ function AddFood() {
                 className="w-full rounded-xl border border-gray-600 bg-gray-700 py-3 pl-10 pr-4 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400"
                 required
               />
-            </div>
+            </div> */}
 
             {/* Food Status */}
             <div className="relative">
