@@ -9,6 +9,7 @@ import Addfood from "../pages/Addfood";
 import Managemyfoods from "../components/Managemyfoods";
 import Myfoodrequest from "../components/Myfoodrequest";
 import PrivateRoute from "./PrivateRoute";
+import FoodDetailsCard from "../components/FoodDetailsCard";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,17 @@ export const router = createBrowserRouter([
             <Myfoodrequest />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/food/:id",
+        element: (
+          <PrivateRoute>
+            <FoodDetailsCard />
+          </PrivateRoute>
+        ),
+        // loader: ({ params }) => {
+        //   fetch(`http://localhost:5000/foods/foodDetails/${params.id}`);
+        // },
       },
       {
         path: "/register",
