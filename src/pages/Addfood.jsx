@@ -7,6 +7,7 @@ import {
   FaUser,
   FaEnvelope,
 } from "react-icons/fa";
+import { LuBadgeDollarSign } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -27,6 +28,7 @@ function AddFood() {
       foodName: form.get("foodName"),
       foodImage: form.get("foodImage"),
       foodQuantity: parseInt(form.get("foodQuantity")),
+      foodPrice: parseInt(form.get("foodPrice")),
       pickupLocation: form.get("pickupLocation"),
       expiredDate: form.get("expiredDate"),
       additionalNotes: form.get("additionalNotes"),
@@ -112,6 +114,20 @@ function AddFood() {
                 type="number"
                 placeholder="Food Quantity"
                 name="foodQuantity"
+                min="1"
+                className="w-full rounded-xl border border-gray-600 bg-gray-700 py-3 pl-10 pr-4 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400"
+                required
+              />
+            </div>
+            {/* Food Price */}
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+                <LuBadgeDollarSign className="text-gray-400" />
+              </div>
+              <input
+                type="number"
+                placeholder="Food Price"
+                name="foodPrice"
                 min="1"
                 className="w-full rounded-xl border border-gray-600 bg-gray-700 py-3 pl-10 pr-4 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400"
                 required

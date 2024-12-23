@@ -1,5 +1,5 @@
 import React from "react";
-import { FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
+import { FaMapMarkerAlt, FaCalendarAlt, FaDollarSign } from "react-icons/fa";
 
 function FoodCard({ food }) {
   return (
@@ -14,6 +14,12 @@ function FoodCard({ food }) {
         <h3 className="text-2xl font-bold mb-2 text-pink-400">
           {food.foodName}
         </h3>
+
+        {/* Food Price */}
+        <p className="flex items-center text-lg mb-2">
+          <FaDollarSign className="mr-2 text-green-400" />
+          <span className="font-semibold">{food.foodPrice}</span>
+        </p>
 
         {/* Food Quantity */}
         <p className="text-lg mb-2">
