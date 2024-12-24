@@ -2,9 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Loading from "../ui/Loading";
-import { FoodContext } from "../provider/Foodprovider";
+// import { FoodContext } from "../provider/Foodprovider";
 import { FaCalendarAlt, FaDollarSign, FaMapMarkerAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
+import FoodContext from "../provider/FoodContext";
 
 function FoodDetailsCard() {
   const { id } = useParams();

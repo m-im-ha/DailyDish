@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { auth } from "../firebase/firebase.init";
 import axios from "axios";
 import {
@@ -10,11 +10,11 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
+import FoodContext from "./FoodContext";
 
-export const FoodContext = createContext();
 const googleProvider = new GoogleAuthProvider();
 
-export function Foodprovider({ children }) {
+export default function Foodprovider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 

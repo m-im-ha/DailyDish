@@ -4,8 +4,9 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
 import { useContext } from "react";
-import { FoodContext } from "../provider/Foodprovider";
+// import { FoodContext } from "../provider/Foodprovider";
 import axios from "axios";
+import FoodContext from "../provider/FoodContext";
 
 function Register() {
   const { createUser, updateUserProfile, signInWithGoogle, setUser } =

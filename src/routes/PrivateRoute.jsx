@@ -1,7 +1,9 @@
 import { useContext } from "react";
-import { FoodContext } from "../provider/Foodprovider";
+// import { FoodContext } from "../provider/Foodprovider";
 import { Navigate, useLocation } from "react-router-dom";
 import Loading from "../ui/Loading";
+import FoodContext from "../provider/FoodContext";
+
 
 function PrivateRoute({ children }) {
   const { user, loading } = useContext(FoodContext);

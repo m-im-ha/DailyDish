@@ -1,8 +1,9 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
-import { FoodContext } from "../provider/Foodprovider";
+// import { FoodContext } from "../provider/Foodprovider";
 import Loading from "../ui/Loading";
+import FoodContext from "../provider/FoodContext";
 
 function Navlinks() {
   const { user, setUser, logOut, loading, setLoading } = useContext(FoodContext);

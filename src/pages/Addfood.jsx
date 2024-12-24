@@ -12,9 +12,10 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useContext, useState } from "react";
-import { FoodContext } from "../provider/Foodprovider";
+// import { FoodContext } from "../provider/Foodprovider";
 import Swal from "sweetalert2";
 import axios from "axios";
+import FoodContext from "../provider/FoodContext";
 
 function AddFood() {
   const { user } = useContext(FoodContext);
