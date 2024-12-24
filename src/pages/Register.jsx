@@ -19,65 +19,63 @@ function Register() {
     const email = form.get("email");
     const Photo_URL = form.get("Photo_URL");
     const password = form.get("password");
-
+  
     const passValidation =
       /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-
+  
     if (!passValidation.test(password)) {
       toast.error(
         `Password must be at least 6 characters with a mix of symbols, uppercase, lowercase letters, and numbers.`,
-        {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        },
       );
       return;
     }
-
+  
     try {
       // Create user with Firebase
       const userCredential = await createUser(email, password);
       const firebaseUser = userCredential.user;
-
+  
       // Update user profile
       await updateUserProfile({
         displayName: name,
         photoURL: Photo_URL,
       });
-
+  
       setUser({
         ...firebaseUser,
         displayName: name,
         photoURL: Photo_URL,
       });
-
+  
       // Create JWT token for backend
       const userInfo = { email: firebaseUser.email };
-      const res = await axios.post(
-        "http://localhost:5000/jwt",
+      await axios.post(
+        "http://localhost:5000/auth/jwt",
         userInfo,
         { withCredentials: true }, // Save token in cookies
       );
-
-      if (res.data.success) {
+  
+      // Verify Token
+      const verifyResponse = await axios.get(
+        "http://localhost:5000/auth/verify",
+        { withCredentials: true },
+      );
+  
+      if (verifyResponse.data.email) {
         Swal.fire({
           title: "Welcome aboard! Let's make the most of your experience.",
           icon: "success",
-          confirmButtonColor: "Ok",
         });
         navigate("/", { replace: true });
+      } else {
+        throw new Error("Token verification failed.");
       }
     } catch (error) {
       console.error("Error during registration:", error);
       toast.error("Failed to register. Please try again.");
     }
   }
+  
 
   // Handle Google Sign-In with JWT
   async function handleSignInWithGoogle() {
@@ -93,7 +91,7 @@ function Register() {
 
       // Create JWT Token for Google User
       const userInfo = { email: googleUser.email };
-      const res = await axios.post("http://localhost:5000/jwt", userInfo, {
+      const res = await axios.post("http://localhost:5000/auth/jwt", userInfo, {
         withCredentials: true,
       });
 
