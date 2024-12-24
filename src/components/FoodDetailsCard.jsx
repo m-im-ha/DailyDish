@@ -2,36 +2,52 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Loading from "../ui/Loading";
-// import { FoodContext } from "../provider/Foodprovider";
 import { FaCalendarAlt, FaDollarSign, FaMapMarkerAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import FoodContext from "../provider/FoodContext";
 
 function FoodDetailsCard() {
   const { id } = useParams();
-  const [food, setFood] = useState(null);
-  const { user, loading, setLoading } = useContext(FoodContext);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [notes, setNotes] = useState("");
+  const { user } = useContext(FoodContext);
   const navigate = useNavigate();
 
+  const [food, setFood] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [notes, setNotes] = useState("");
+
+  // Fetch Food Details
   useEffect(() => {
-    async function fetchFoodDetails() {
-      setLoading(true);
+    const fetchFoodDetails = async () => {
       try {
+        setIsLoading(true);
         const response = await axios.get(
           `http://localhost:5000/foods/foodDetails/${id}`,
+          {
+            withCredentials: true,
+          },
         );
         setFood(response.data);
       } catch (error) {
-        console.error("Error fetching food details:", error.message);
+        console.error("Error:", error);
+        if (error.response?.status === 401) {
+          navigate("/login");
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Error loading food details",
+            text: error.response?.data?.message || "Please try again later",
+          });
+        }
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
-    }
-    fetchFoodDetails();
-  }, [id, setLoading]);
+    };
 
+    fetchFoodDetails();
+  }, [id, navigate]);
+
+  // Handle Food Request
   async function handleRequestFood() {
     try {
       const requestData = {
@@ -52,10 +68,13 @@ function FoodDetailsCard() {
       await axios.post(
         "http://localhost:5000/foods/requestedfoods",
         requestData,
+        { withCredentials: true },
       );
 
       // Remove food from available foods
-      await axios.delete(`http://localhost:5000/foods/delete/${food._id}`);
+      await axios.delete(`http://localhost:5000/foods/delete/${food._id}`, {
+        withCredentials: true,
+      });
 
       setIsModalOpen(false);
       Swal.fire({
@@ -63,18 +82,20 @@ function FoodDetailsCard() {
         icon: "success",
         confirmButtonColor: "Ok",
       });
+
       navigate("/myfoodrequest");
     } catch (error) {
       console.error("Error requesting food:", error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Failed to request food.",
+        text: "Please try again later",
+      });
     }
   }
 
-  if (loading || !food) {
-    return (
-      <div className="text-center text-white">
-        <Loading />
-      </div>
-    );
+  if (isLoading) {
+    return <Loading />;
   }
 
   return (

@@ -196,14 +196,24 @@ function Register() {
             <div className="h-px flex-grow bg-gray-600"></div>
           </div>
 
-          {/* Google Login */}
-          <button
+           {/* Google Sign-In */}
+           <button
             onClick={handleSignInWithGoogle}
-            className="w-full rounded-xl bg-gray-700 py-3 font-bold text-white hover:bg-gray-600"
+            className="flex w-full transform items-center justify-center rounded-xl border border-gray-600 bg-gray-700 py-3 text-gray-200 transition-all duration-300 hover:scale-105 hover:bg-gray-600 active:scale-95"
           >
-            <FaGoogle className="mr-2 text-yellow-400" />
+            <FaGoogle className="mr-3 text-yellow-400" />
             Continue with Google
           </button>
+
+            {/* Login Link */}
+            <div className="mt-6 text-center">
+            <span className="text-sm text-gray-400">
+              Already have an account?{" "}
+              <Link to="/login" className="text-pink-400 hover:text-pink-500">
+                Login
+              </Link>
+            </span>
+          </div>
         </div>
       </div>
     </div>
