@@ -2,16 +2,17 @@ import { FaGoogle, FaEnvelope, FaLock, FaUser, FaImage } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 import { useContext } from "react";
 import { FoodContext } from "../provider/Foodprovider";
+import axios from "axios";
 
 function Register() {
-  const { createUser, updateUserProfile, signInWithGoogle, user, setUser } =
+  const { createUser, updateUserProfile, signInWithGoogle, setUser } =
     useContext(FoodContext);
   const navigate = useNavigate();
 
-  function handleRegister(e) {
+  async function handleRegister(e) {
     e.preventDefault();
     const form = new FormData(e.target);
     const name = form.get("name");
@@ -39,44 +40,75 @@ function Register() {
       return;
     }
 
-    createUser(email, password)
-      .then(async (userCredential) => {
-        // const createdAt = userCredential?.user?.metadata?.creationTime;
-        // const newUser = { name, email, createdAt };
-        return updateUserProfile({
-          displayName: name,
-          photoURL: Photo_URL,
-        }).then(() => {
-          setUser({
-            ...userCredential.user,
-            displayName: name,
-            photoURL: Photo_URL,
-            // userID: data.insertedId,
-          });
+    try {
+      // Create user with Firebase
+      const userCredential = await createUser(email, password);
+      const firebaseUser = userCredential.user;
+
+      // Update user profile
+      await updateUserProfile({
+        displayName: name,
+        photoURL: Photo_URL,
+      });
+
+      setUser({
+        ...firebaseUser,
+        displayName: name,
+        photoURL: Photo_URL,
+      });
+
+      // Create JWT token for backend
+      const userInfo = { email: firebaseUser.email };
+      const res = await axios.post(
+        "http://localhost:5000/jwt",
+        userInfo,
+        { withCredentials: true }, // Save token in cookies
+      );
+
+      if (res.data.success) {
+        Swal.fire({
+          title: "Welcome aboard! Let's make the most of your experience.",
+          icon: "success",
+          confirmButtonColor: "Ok",
         });
-      })
-      .then(() => {
-        Swal.fire("Welcome aboard! Let's make the most of your experience.");
         navigate("/", { replace: true });
-      })
-      .catch((error) => console.error("Error during registration:", error));
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
+      toast.error("Failed to register. Please try again.");
+    }
   }
 
-  function handleSignInWithGoogle() {
-    signInWithGoogle()
-      .then((result) => {
-        const userData = result.user;
-        setUser({
-          ...userData,
-          displayName: userData.displayName || "User",
-          photoURL: userData.photoURL || "",
-        });
-        Swal.fire("Welcome aboard! Let's make the most of your experience.");
-        navigate("/");
-      })
-      .catch((error) => {
-        console.error(error.message);
+  // Handle Google Sign-In with JWT
+  async function handleSignInWithGoogle() {
+    try {
+      const result = await signInWithGoogle();
+      const googleUser = result.user;
+
+      setUser({
+        ...googleUser,
+        displayName: googleUser.displayName || "User",
+        photoURL: googleUser.photoURL || "",
       });
+
+      // Create JWT Token for Google User
+      const userInfo = { email: googleUser.email };
+      const res = await axios.post("http://localhost:5000/jwt", userInfo, {
+        withCredentials: true,
+      });
+
+      if (res.data.success) {
+        Swal.fire({
+          title: "Welcome aboard! Let's make the most of your experience.",
+          icon: "success",
+          confirmButtonColor: "Ok",
+        });
+        navigate("/", { replace: true });
+      }
+    } catch (error) {
+      console.error(error.message);
+      toast.error("Failed to sign in with Google.");
+    }
   }
 
   return (
@@ -150,40 +182,29 @@ function Register() {
               />
             </div>
 
-            {/* Register Button */}
             <button
               type="submit"
-              className="w-full transform rounded-xl bg-gradient-to-r from-pink-500 to-red-500 py-3 font-bold text-white transition-all duration-300 hover:scale-105 hover:from-pink-600 hover:to-red-600 active:scale-95"
+              className="w-full rounded-xl bg-pink-500 py-3 font-bold text-white hover:bg-pink-600"
             >
               Register Now
             </button>
           </form>
 
           {/* Divider */}
-          <div className="my-6 flex items-center space-x-4">
+          <div className="my-6 flex items-center">
             <div className="h-px flex-grow bg-gray-600"></div>
             <span className="text-sm text-gray-400">OR</span>
             <div className="h-px flex-grow bg-gray-600"></div>
           </div>
 
-          {/* Google Sign-In */}
+          {/* Google Login */}
           <button
             onClick={handleSignInWithGoogle}
-            className="flex w-full transform items-center justify-center rounded-xl border border-gray-600 bg-gray-700 py-3 text-gray-200 transition-all duration-300 hover:scale-105 hover:bg-gray-600 active:scale-95"
+            className="w-full rounded-xl bg-gray-700 py-3 font-bold text-white hover:bg-gray-600"
           >
-            <FaGoogle className="mr-3 text-yellow-400" />
+            <FaGoogle className="mr-2 text-yellow-400" />
             Continue with Google
           </button>
-
-          {/* Login Link */}
-          <div className="mt-6 text-center">
-            <span className="text-sm text-gray-400">
-              Already have an account?{" "}
-              <Link to="/login" className="text-pink-400 hover:text-pink-500">
-                Login
-              </Link>
-            </span>
-          </div>
         </div>
       </div>
     </div>

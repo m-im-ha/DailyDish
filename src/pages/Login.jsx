@@ -40,7 +40,7 @@ function Login() {
       await axios.post(
         "http://localhost:5000/auth/login",
         { email },
-        { withCredentials: true }, // Send cookie with the request
+        { withCredentials: true }, // Save token in cookies
       );
 
       Swal.fire({
