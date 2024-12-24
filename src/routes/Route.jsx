@@ -55,9 +55,6 @@ export const router = createBrowserRouter([
             <FoodDetailsCard />
           </PrivateRoute>
         ),
-        // loader: ({ params }) => {
-        //   fetch(`http://localhost:5000/foods/foodDetails/${params.id}`);
-        // },
       },
       {
         path: "/register",
