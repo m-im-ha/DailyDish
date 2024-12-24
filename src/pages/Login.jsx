@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useContext, useState } from "react";
 import { FoodContext } from "../provider/Foodprovider";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 function Login() {
   const { loginUser, setUser, signInWithGoogle, setLoading } =
@@ -21,7 +22,7 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [isPasswordTyped, setIsPasswordTyped] = useState(false);
 
-  function handleLogin(e) {
+  async function handleLogin(e) {
     e.preventDefault();
     const form = new FormData(e.target);
     const email = form.get("email");
@@ -29,47 +30,66 @@ function Login() {
 
     setLoading(true);
 
-    loginUser(email, password)
-      .then(async (userCredential) => {
-        const user = userCredential.user;
-        setUser({ ...user });
+    try {
+      // Authenticate user with Firebase
+      const userCredential = await loginUser(email, password);
+      const user = userCredential.user;
+      setUser({ ...user });
 
-        setLoading(false);
-        Swal.fire("Success! You're now logged in. Enjoy exploring our platform!");
-        navigate(location?.state ? location.state : "/");
-      })
-      .catch((error) => {
-        console.error(error.message);
+      // Send token request to backend
+      await axios.post(
+        "http://localhost:5000/auth/login",
+        { email },
+        { withCredentials: true }, // Send cookie with the request
+      );
 
-        setLoading(false);
-        toast.error(`Invalid email or password.`, {
-          position: "bottom-right",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          theme: "light",
-        });
+      Swal.fire({
+        title: "Success! You're now logged in. Enjoy exploring our platform!!!",
+        icon: "success",
+        confirmButtonColor: "Ok",
       });
+      navigate(location?.state ? location.state : "/");
+    } catch (error) {
+      console.error(error.message);
+
+      setLoading(false);
+      toast.error(`Invalid email or password.`, {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        theme: "light",
+      });
+    }
   }
 
-  function handleSignInWithGoogle() {
-    signInWithGoogle()
-      .then((result) => {
-        setUser(result.user);
-        Swal.fire("Success! You're now logged in. Enjoy exploring our platform!");
-        navigate(location?.state ? location.state : "/");
-      })
-      .catch((error) => {
-        console.error(error.message);
+  async function handleSignInWithGoogle() {
+    try {
+      const result = await signInWithGoogle();
+      setUser(result.user);
+
+      await axios.post(
+        "http://localhost:5000/auth/google-login",
+        { email: result.user.email },
+        { withCredentials: true },
+      );
+
+      Swal.fire({
+        title: "Success! You're now logged in. Enjoy exploring our platform!",
+        icon: "success",
+        confirmButtonColor: "Ok",
       });
+      navigate(location?.state ? location.state : "/");
+    } catch (error) {
+      console.error(error.message);
+    }
   }
 
   return (
     <div className="flex min-h-screen items-center justify-center px-4 py-10">
       <ToastContainer />
-
       <div className="w-full max-w-md overflow-hidden rounded-2xl border border-gray-700 bg-gray-800 shadow-2xl">
         <div className="p-8 text-center">
           <div className="mb-8">
@@ -121,14 +141,6 @@ function Login() {
                   )}
                 </div>
               )}
-              {/* <div className="mt-2 text-right">
-                <Link
-                  to="/forgetpass"
-                  className="text-sm text-pink-400 hover:text-pink-500"
-                >
-                  Forgot Password?
-                </Link>
-              </div> */}
             </div>
 
             {/* Login Button */}
@@ -156,7 +168,6 @@ function Login() {
             Continue with Google
           </button>
 
-          {/* Register Link */}
           <div className="mt-6 text-center">
             <span className="text-sm text-gray-400">
               Don't have an account?{" "}
