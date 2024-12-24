@@ -3,16 +3,22 @@ import axios from "axios";
 import Loading from "../ui/Loading";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { FaCalendarAlt, FaMapMarkerAlt, FaUser } from "react-icons/fa";
 
 function Myfoodrequest() {
   const navigate = useNavigate();
 
-  const { data: foods, isLoading, isError, error } = useQuery({
+  const {
+    data: foods,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
     queryKey: ["myRequestedFoods"],
     queryFn: async () => {
       const response = await axios.get(
         "http://localhost:5000/foods/myrequestedfoods",
-        { withCredentials: true }
+        { withCredentials: true },
       );
       return response.data;
     },
@@ -21,10 +27,18 @@ function Myfoodrequest() {
   // Handle Errors
   if (isError) {
     if (error.response?.status === 401) {
-      Swal.fire("Unauthorized!", "Please login again.", "error");
+      Swal.fire({
+        icon: "error",
+        title: "Unauthorized! Please log in again.",
+        text: "Please try again later",
+      });
       navigate("/login");
     } else {
-      Swal.fire("Oops!", "Failed to load your requested foods.", "error");
+      Swal.fire({
+        icon: "error",
+        title: "Failed to load your requested foods.",
+        text: "Please try again later",
+      });
     }
   }
 
@@ -40,50 +54,57 @@ function Myfoodrequest() {
   // No Foods Requested
   if (foods?.length === 0) {
     return (
-      <div className="text-center mt-10 text-lg text-gray-400">
+      <div className="mt-10 text-center text-lg text-gray-400">
         No food requests found!
       </div>
     );
   }
 
   return (
-    <div className="p-6">
-      <h2 className="mb-6 text-3xl font-bold text-pink-500 text-center">
+    <div className="container mx-auto px-4 py-8">
+      <h2 className="mb-6 text-center text-3xl font-bold text-pink-400">
         My Food Requests
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {foods.map((food) => (
           <div
             key={food._id}
-            className="max-w-sm overflow-hidden rounded-lg bg-gray-800 text-gray-200 shadow-lg"
+            className="overflow-hidden rounded-xl bg-gray-800 text-gray-200 shadow-lg"
           >
             <img
+              className="h-48 w-full object-cover"
               src={food.foodImage}
               alt={food.foodName}
-              className="h-48 w-full object-cover"
             />
             <div className="p-6">
               <h3 className="mb-2 text-2xl font-bold text-pink-400">
                 {food.foodName}
               </h3>
-              <p className="mb-2 text-lg">
-                <span className="font-semibold">Pickup Location:</span>{" "}
-                {food.pickupLocation}
+
+              {/* Donator's Name */}
+              <p className="mb-2 flex items-center text-lg">
+                <FaUser className="mr-2 text-blue-400" />
+                <span className="font-semibold">
+                  Donator: {food.donatorName}
+                </span>
               </p>
-              <p className="mb-2 text-lg">
-                <span className="font-semibold">Request Date:</span>{" "}
-                {new Date(food.requestDate).toDateString()}
+
+              {/* Pickup Location */}
+              <p className="mb-2 flex items-center text-lg">
+                <FaMapMarkerAlt className="mr-2 text-yellow-400" />
+                Pickup: {food.pickupLocation}
               </p>
-              <p className="mb-2 text-lg">
-                <span className="font-semibold">Expire Date:</span>{" "}
-                {new Date(food.expiredDate).toDateString()}
+
+              {/* Expire Date */}
+              <p className="mb-2 flex items-center text-lg">
+                <FaCalendarAlt className="mr-2 text-red-400" />
+                Expiry: {new Date(food.expiredDate).toDateString()}
               </p>
-              <p className="mb-4 text-lg font-semibold">
-                Status: {food.foodStatus}
-              </p>
-              <p className="mb-4 text-sm text-gray-400">
-                <span className="font-semibold text-white">Notes:</span>{" "}
-                {food.additionalNotes}
+
+              {/* Request Date */}
+              <p className="mb-2 flex items-center text-lg">
+                <FaCalendarAlt className="mr-2 text-green-400" />
+                Requested: {new Date(food.requestDate).toDateString()}
               </p>
             </div>
           </div>
