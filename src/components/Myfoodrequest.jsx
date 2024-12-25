@@ -78,7 +78,7 @@ function Myfoodrequest() {
             />
             <div className="p-6">
               <h3 className="mb-2 text-2xl font-bold text-pink-400">
-                {food.foodName}
+                {food.foodName} (<span className="text-green-400 uppercase">{food.foodStatus}</span>)
               </h3>
 
               {/* Donator's Name */}
