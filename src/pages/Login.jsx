@@ -9,7 +9,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useContext, useState } from "react";
-// import  FoodContext  from "../provider/Foodprovider";
 import Swal from "sweetalert2";
 import axios from "axios";
 import FoodContext from "../provider/FoodContext";
@@ -23,6 +22,7 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [isPasswordTyped, setIsPasswordTyped] = useState(false);
 
+  // Handle Firebase + Node login
   async function handleLogin(e) {
     e.preventDefault();
     const form = new FormData(e.target);
@@ -32,16 +32,14 @@ function Login() {
     setLoading(true);
 
     try {
-      // Authenticate user with Firebase
       const userCredential = await loginUser(email, password);
       const user = userCredential.user;
       setUser({ ...user });
 
-      // Send token request to backend
       await axios.post(
         "http://localhost:5000/auth/login",
         { email },
-        { withCredentials: true }, // Save token in cookies
+        { withCredentials: true },
       );
 
       Swal.fire({
@@ -49,12 +47,12 @@ function Login() {
         icon: "success",
         confirmButtonColor: "Ok",
       });
+
       navigate(location?.state ? location.state : "/");
     } catch (error) {
       console.error(error.message);
 
-      setLoading(false);
-      toast.error(`Invalid email or password.`, {
+      toast.error("Invalid email or password.", {
         position: "bottom-right",
         autoClose: 4000,
         hideProgressBar: false,
@@ -63,10 +61,15 @@ function Login() {
         draggable: true,
         theme: "light",
       });
+    } finally {
+      setLoading(false);
     }
   }
 
+  // Handle Firebase Google login
   async function handleSignInWithGoogle() {
+    setLoading(true);
+
     try {
       const result = await signInWithGoogle();
       setUser(result.user);
@@ -82,9 +85,12 @@ function Login() {
         icon: "success",
         confirmButtonColor: "Ok",
       });
+
       navigate(location?.state ? location.state : "/");
     } catch (error) {
       console.error(error.message);
+    } finally {
+      setLoading(false);
     }
   }
 

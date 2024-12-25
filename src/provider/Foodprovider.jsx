@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
-import { auth } from "../firebase/firebase.init";
 import axios from "axios";
+import { auth } from "../firebase/firebase.init";
 import {
-  createUserWithEmailAndPassword,
-  GoogleAuthProvider,
   onAuthStateChanged,
+  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
   updateProfile,
+  GoogleAuthProvider,
 } from "firebase/auth";
+
 import FoodContext from "./FoodContext";
 
 const googleProvider = new GoogleAuthProvider();
@@ -17,55 +18,8 @@ const googleProvider = new GoogleAuthProvider();
 export default function Foodprovider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [initialAuthCheck, setInitialAuthCheck] = useState(true);
 
-  console.log(`User from provider: `, user);
-
-  // JWT Verification with Backend
-  async function verifyToken() {
-    try {
-      const res = await axios.get("http://localhost:5000/auth/verify", {
-        withCredentials: true,
-      });
-
-      if (res.data.email) {
-        setUser({ email: res.data.email }); // Set user based on verified email
-        return true;
-      }
-    } catch (error) {
-      console.error("JWT verification failed:", error.message);
-      setUser(null); // Clear user on failure
-    }
-    return false;
-  }
-
-
-  // Listen for Firebase Authentication State
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      if (currentUser) {
-        setLoading(true);
-  
-        // small delay before verifying the token
-        setTimeout(async () => {
-          const isValid = await verifyToken(); // Verify token only after a slight delay
-          if (!isValid) {
-            setUser(null);
-          } else {
-            setUser(currentUser); // Set user if valid
-          }
-          setLoading(false);
-        }, 500);
-      } else {
-        setUser(null);
-        setLoading(false);
-      }
-    });
-  
-    return () => unsubscribe();
-  }, []);
-  
-
-  // Auth Functions
   function createUser(email, password) {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -77,10 +31,8 @@ export default function Foodprovider({ children }) {
   }
 
   function logOut() {
-    return signOut(auth).then(() => {
-      axios.post("http://localhost:5000/auth/logout", {}, { withCredentials: true });
-      setUser(null);
-    });
+    setLoading(true);
+    return signOut(auth);
   }
 
   function updateUserProfile(data) {
@@ -88,9 +40,62 @@ export default function Foodprovider({ children }) {
   }
 
   function signInWithGoogle() {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   }
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      console.log("Firebase Auth State Changed:", currentUser);
+
+      if (currentUser?.email) {
+        // Set cookie on server and update state
+        axios
+          .post(
+            "http://localhost:5000/auth/login",
+            { email: currentUser.email },
+            { withCredentials: true }
+          )
+          .then((res) => {
+            console.log("Cookie set:", res.data);
+            setUser({
+              email: currentUser.email,
+              displayName: currentUser.displayName,
+              photoURL: currentUser.photoURL,
+            });
+          })
+          .catch((err) => {
+            console.error("Failed to set cookie:", err.message);
+            setUser(null);
+          })
+          .finally(() => {
+            setLoading(false);
+            setInitialAuthCheck(false); 
+          });
+      } else {
+        
+        axios
+          .post("http://localhost:5000/auth/logout", {}, { withCredentials: true })
+          .then(() => {
+            setUser(null);
+          })
+          .catch((err) => console.error("Failed to clear cookie:", err.message))
+          .finally(() => {
+            setLoading(false);
+            setInitialAuthCheck(false); 
+          });
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  console.log("User from provider:", user);
+
+  if (initialAuthCheck) {
+    console.log("Waiting for Firebase auth check...");
+    return null; 
+  }
 
   return (
     <FoodContext.Provider
@@ -110,4 +115,3 @@ export default function Foodprovider({ children }) {
     </FoodContext.Provider>
   );
 }
-
