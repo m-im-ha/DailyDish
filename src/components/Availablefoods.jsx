@@ -8,13 +8,14 @@ function Availablefoods() {
   const [sortKey, setSortKey] = useState("foodPrice");
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredFoods, setFilteredFoods] = useState([]);
+  const [isThreeColumn, setIsThreeColumn] = useState(true);
 
   // Fetch Data
   useEffect(() => {
     async function fetchAvailablefoods() {
       try {
         const response = await axios.get(
-          `http://localhost:5000/foods/availablefoods`,
+          `http://localhost:5000/foods/availablefoods`
         );
         setAvailablefoods(response.data);
         setFilteredFoods(response.data);
@@ -42,7 +43,7 @@ function Availablefoods() {
       return a[sortKey] - b[sortKey];
     });
 
-    setFilteredFoods(foods); 
+    setFilteredFoods(foods);
   }, [availablefoods, searchQuery, sortKey]);
 
   return (
@@ -61,36 +62,66 @@ function Availablefoods() {
         </div>
       </div>
 
-      {/* Sorting Options */}
-      <div className="mb-5 flex justify-end gap-4">
-  {/* Sort by Price */}
-  <button
-    onClick={() => setSortKey("foodPrice")}
-    className={`rounded-lg px-4 py-2 text-black transition duration-300 ${
-      sortKey === "foodPrice"
-        ? "bg-green-600 shadow-lg"
-        : "bg-green-200 hover:bg-green-500"
-    }`}
-  >
-    Sort by Price
-  </button>
+      {/* Sorting and Layout Buttons */}
+      <div className="mb-5 flex justify-between">
+        <div className="flex gap-4">
+          {/* Sort by Price */}
+          <button
+            onClick={() => setSortKey("foodPrice")}
+            className={`rounded-lg px-4 py-2 text-black transition duration-300 ${
+              sortKey === "foodPrice"
+                ? "bg-green-600 shadow-lg text-white"
+                : "bg-green-200 hover:bg-green-500"
+            }`}
+          >
+            Sort by Price
+          </button>
 
-  {/* Sort by Expired Date */}
-  <button
-    onClick={() => setSortKey("expiredDate")}
-    className={`rounded-lg px-4 py-2 text-black transition duration-300 ${
-      sortKey === "expiredDate"
-        ? "bg-yellow-600 shadow-lg"
-        : "bg-yellow-200 hover:bg-yellow-500"
-    }`}
-  >
-    Sort by Expired Date
-  </button>
-</div>
+          {/* Sort by Expired Date */}
+          <button
+            onClick={() => setSortKey("expiredDate")}
+            className={`rounded-lg px-4 py-2 text-black transition duration-300 ${
+              sortKey === "expiredDate"
+                ? "bg-yellow-600 shadow-lg text-white"
+                : "bg-yellow-200 hover:bg-yellow-500"
+            }`}
+          >
+            Sort by Expired Date
+          </button>
+        </div>
 
+        {/* Layout Toggle Buttons */}
+        <div className="flex gap-4">
+          <button
+            onClick={() => setIsThreeColumn(true)}
+            className={`rounded-lg px-4 py-2 transition duration-300 ${
+              isThreeColumn
+                ? "bg-blue-600 shadow-lg text-white"
+                : "bg-blue-200 hover:bg-blue-500"
+            }`}
+          >
+            3-Column
+          </button>
+
+          <button
+            onClick={() => setIsThreeColumn(false)}
+            className={`rounded-lg px-4 py-2 transition duration-300 ${
+              !isThreeColumn
+                ? "bg-blue-600 shadow-lg text-white"
+                : "bg-blue-200 hover:bg-blue-500"
+            }`}
+          >
+            2-Column
+          </button>
+        </div>
+      </div>
 
       {/* Food Cards */}
-      <div className="grid grid-cols-3 gap-5">
+      <div
+        className={`grid gap-5 ${
+          isThreeColumn ? "grid-cols-3" : "grid-cols-2"
+        }`}
+      >
         {filteredFoods.length > 0 ? (
           filteredFoods.map(
             (food) =>
@@ -98,7 +129,7 @@ function Availablefoods() {
                 <div key={food._id}>
                   <FoodCard food={food} />
                 </div>
-              ),
+              )
           )
         ) : (
           <div className="col-span-full py-10 text-center">
