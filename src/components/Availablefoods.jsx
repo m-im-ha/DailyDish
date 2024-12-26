@@ -42,13 +42,13 @@ function Availablefoods() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50 to-amber-100 px-4 py-12 sm:px-6 lg:px-8">
       <div className="container mx-auto">
-        {/* Header Section */}
+    
         <div className="mb-16 text-center">
-          <h1 className="relative inline-block text-4xl font-black tracking-tight text-amber-800 md:text-5xl">
+          <h1 className="font-playfair relative inline-block text-4xl font-black tracking-tight text-amber-800 md:text-5xl">
             <span className="relative z-10">Available Foods</span>
             <div className="absolute -bottom-2 left-0 h-3 w-full bg-amber-200/60"></div>
           </h1>
-          <p className="mt-4 text-lg text-amber-700">Discover delicious meals waiting for you</p>
+          <p className="font-lato mt-4 text-lg text-amber-700">Discover delicious meals waiting for you</p>
         </div>
 
         {/* Search Section */}

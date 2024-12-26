@@ -2,7 +2,14 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Loading from "../ui/Loading";
-import { FaCalendarAlt, FaDollarSign, FaMapMarkerAlt, FaUtensils, FaUser, FaEnvelope } from "react-icons/fa";
+import {
+  FaCalendarAlt,
+  FaDollarSign,
+  FaMapMarkerAlt,
+  FaUtensils,
+  FaUser,
+  FaEnvelope,
+} from "react-icons/fa";
 import Swal from "sweetalert2";
 import FoodContext from "../provider/FoodContext";
 
@@ -16,8 +23,8 @@ function FoodDetailsCard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [notes, setNotes] = useState("");
 
-   // Fetch Food Details
-   useEffect(() => {
+  // Fetch Food Details
+  useEffect(() => {
     const fetchFoodDetails = async () => {
       try {
         setIsLoading(true);
@@ -117,7 +124,6 @@ function FoodDetailsCard() {
         {/* Content Container */}
         <div className="relative z-10 -mt-20 p-6">
           <div className="rounded-xl bg-white p-8 shadow-lg transition-all duration-300 group-hover:shadow-xl">
-            {/* Title */}
             <h3 className="mb-6 text-3xl font-bold text-amber-800">
               {food.foodName}
             </h3>
@@ -163,23 +169,33 @@ function FoodDetailsCard() {
 
             {/* Donator Info */}
             <div className="mb-8 rounded-lg bg-amber-50 p-6">
-              <h4 className="mb-4 text-xl font-bold text-amber-800">Donator Information</h4>
+              <h4 className="mb-4 text-xl font-bold text-amber-800">
+                Donator Information
+              </h4>
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <FaUser className="text-xl text-amber-600" />
-                  <span className="text-lg font-medium text-gray-700">{food.donator.name}</span>
+                  <span className="text-lg font-medium text-gray-700">
+                    {food.donator.name}
+                  </span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <FaEnvelope className="text-xl text-amber-600" />
-                  <span className="text-lg font-medium text-gray-700">{food.donator.email}</span>
+                  <span className="text-lg font-medium text-gray-700">
+                    {food.donator.email}
+                  </span>
                 </div>
               </div>
             </div>
 
             {/* Notes */}
             <div className="mb-8">
-              <h4 className="mb-2 text-xl font-bold text-amber-800">Additional Notes</h4>
-              <p className="text-lg text-gray-600">{food.additionalNotes || "No additional notes provided."}</p>
+              <h4 className="mb-2 text-xl font-bold text-amber-800">
+                Additional Notes
+              </h4>
+              <p className="text-lg text-gray-600">
+                {food.additionalNotes || "No additional notes provided."}
+              </p>
             </div>
 
             {/* Request Button */}
@@ -221,7 +237,7 @@ function FoodDetailsCard() {
             <h3 className="mb-6 text-center text-2xl font-bold text-amber-800">
               Request Food
             </h3>
-            
+
             <div className="space-y-4">
               <div className="rounded-lg bg-amber-50 p-4">
                 <img
@@ -229,28 +245,38 @@ function FoodDetailsCard() {
                   alt={food.foodName}
                   className="mb-4 h-48 w-full rounded-lg object-cover"
                 />
-                <h4 className="mb-2 text-xl font-bold text-amber-800">{food.foodName}</h4>
+                <h4 className="mb-2 text-xl font-bold text-amber-800">
+                  {food.foodName}
+                </h4>
                 <p className="text-gray-600">ID: {food._id}</p>
               </div>
 
               <div className="space-y-3 rounded-lg bg-amber-50 p-4">
                 <p className="font-medium text-gray-700">
-                  <span className="font-bold text-amber-800">Donator:</span> {food.donator.name}
+                  <span className="font-bold text-amber-800">Donator:</span>{" "}
+                  {food.donator.name}
                 </p>
                 <p className="font-medium text-gray-700">
-                  <span className="font-bold text-amber-800">Email:</span> {food.donator.email}
+                  <span className="font-bold text-amber-800">Email:</span>{" "}
+                  {food.donator.email}
                 </p>
                 <p className="font-medium text-gray-700">
-                  <span className="font-bold text-amber-800">Your Email:</span> {user.email}
+                  <span className="font-bold text-amber-800">Your Email:</span>{" "}
+                  {user.email}
                 </p>
                 <p className="font-medium text-gray-700">
-                  <span className="font-bold text-amber-800">Request Date:</span> {new Date().toDateString()}
+                  <span className="font-bold text-amber-800">
+                    Request Date:
+                  </span>{" "}
+                  {new Date().toDateString()}
                 </p>
                 <p className="font-medium text-gray-700">
-                  <span className="font-bold text-amber-800">Pickup:</span> {food.pickupLocation}
+                  <span className="font-bold text-amber-800">Pickup:</span>{" "}
+                  {food.pickupLocation}
                 </p>
                 <p className="font-medium text-gray-700">
-                  <span className="font-bold text-amber-800">Expires:</span> {new Date(food.expiredDate).toDateString()}
+                  <span className="font-bold text-amber-800">Expires:</span>{" "}
+                  {new Date(food.expiredDate).toDateString()}
                 </p>
               </div>
 

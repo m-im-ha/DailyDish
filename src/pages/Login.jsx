@@ -98,91 +98,100 @@ function Login() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-amber-50 to-amber-100 px-6 py-10">
-  <ToastContainer />
+      <ToastContainer />
 
-  <div className="flex w-full max-w-6xl overflow-hidden rounded-3xl shadow-2xl bg-white">
-    {/* Left Side: Form */}
-    <div className="w-full md:w-1/2 p-8 sm:p-12">
-      <h2 className="mb-6 text-4xl font-extrabold text-amber-800">Welcome Back</h2>
-      <p className="mb-8 text-lg text-gray-600">Enter your credentials to access your account</p>
+      <div className="flex w-full max-w-6xl overflow-hidden rounded-3xl bg-white shadow-2xl">
+        {/* Left Side: Form */}
+        <div className="w-full p-8 sm:p-12 md:w-1/2">
+          <h2 className="font-playfair mb-6 text-5xl font-extrabold text-amber-800">
+            Welcome Back
+          </h2>
+          <p className="font-lato mb-8 text-lg text-gray-600">
+            Enter your credentials to access your account
+          </p>
 
-      <form onSubmit={handleLogin} className="space-y-6">
-        {/* Email Input */}
-        <div className="relative">
-          <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-            <FaEnvelope className="text-gray-400" />
-          </div>
-          <input
-            type="email"
-            placeholder="Email Address"
-            name="email"
-            className="w-full rounded-lg border border-gray-300 bg-gray-50 py-3 pl-10 pr-4 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
-            required
-          />
-        </div>
+          <form onSubmit={handleLogin} className="space-y-6">
+            {/* Email Input */}
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+                <FaEnvelope className="text-gray-400" />
+              </div>
+              <input
+                type="email"
+                placeholder="Email Address"
+                name="email"
+                className="w-full rounded-lg border border-gray-300 bg-gray-50 py-3 pl-10 pr-4 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                required
+              />
+            </div>
 
-        {/* Password Input */}
-        <div className="relative">
-          <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-            <FaLock className="text-gray-400" />
-          </div>
-          <input
-            type={showPassword ? "text" : "password"}
-            placeholder="Password"
-            name="password"
-            className="w-full rounded-lg border border-gray-300 bg-gray-50 py-3 pl-10 pr-10 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
-            required
-            onChange={(e) => setIsPasswordTyped(e.target.value.length > 0)}
-          />
-          {isPasswordTyped && (
-            <div
-              className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? (
-                <FaEyeSlash className="text-gray-400" />
-              ) : (
-                <FaEye className="text-gray-400" />
+            {/* Password Input */}
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+                <FaLock className="text-gray-400" />
+              </div>
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                name="password"
+                className="w-full rounded-lg border border-gray-300 bg-gray-50 py-3 pl-10 pr-10 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                required
+                onChange={(e) => setIsPasswordTyped(e.target.value.length > 0)}
+              />
+              {isPasswordTyped && (
+                <div
+                  className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? (
+                    <FaEyeSlash className="text-gray-400" />
+                  ) : (
+                    <FaEye className="text-gray-400" />
+                  )}
+                </div>
               )}
             </div>
-          )}
+
+            <button
+              type="submit"
+              className="w-full rounded-lg bg-gradient-to-r from-amber-500 to-amber-700 py-3 font-bold text-white hover:from-amber-600 hover:to-amber-800 focus:outline-none"
+            >
+              Login
+            </button>
+          </form>
+
+          {/* Google Login */}
+          <div className="mt-8 flex flex-col items-center">
+            <div className="mb-4 text-gray-500">Or</div>
+            <button
+              onClick={handleSignInWithGoogle}
+              className="flex w-full transform items-center justify-center rounded-lg border border-gray-300 bg-white py-3 text-gray-700 transition-all duration-300 hover:scale-105 hover:shadow-md"
+            >
+              <FaGoogle className="mr-3 text-amber-500" />
+              Continue with Google
+            </button>
+          </div>
+
+          <div className="mt-6 text-center text-sm text-gray-600">
+            Don't have an account?
+            <Link
+              to="/register"
+              className="pl-2 font-semibold text-amber-500 hover:text-amber-600"
+            >
+              Register Now
+            </Link>
+          </div>
         </div>
 
-        <button
-          type="submit"
-          className="w-full rounded-lg bg-gradient-to-r from-amber-500 to-amber-700 py-3 font-bold text-white hover:from-amber-600 hover:to-amber-800 focus:outline-none"
-        >
-          Login
-        </button>
-      </form>
-
-      {/* Google Login */}
-      <div className="mt-8 flex flex-col items-center">
-        <div className="mb-4 text-gray-500">Or</div>
-        <button
-          onClick={handleSignInWithGoogle}
-          className="flex w-full transform items-center justify-center rounded-lg border border-gray-300 bg-white py-3 text-gray-700 transition-all duration-300 hover:scale-105 hover:shadow-md"
-        >
-          <FaGoogle className="mr-3 text-amber-500" />
-          Continue with Google
-        </button>
-      </div>
-
-      <div className="mt-6 text-center text-sm text-gray-600">
-        Don't have an account? 
-        <Link to="/register" className="text-amber-500 hover:text-amber-600">
-          Register Now
-        </Link>
+        {/* Right Side: Image Section */}
+        <div
+          className="hidden w-1/2 bg-cover bg-center md:block"
+          style={{
+            backgroundImage: `url(${login_bg})`,
+          }}
+        ></div>
       </div>
     </div>
-
-    {/* Right Side: Image Section */}
-    <div className="hidden md:block w-1/2 bg-cover bg-center" style={{
-      backgroundImage: `url(${login_bg})`
-    }}></div>
-  </div>
-</div>
-
   );
 }
 

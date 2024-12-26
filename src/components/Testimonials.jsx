@@ -46,12 +46,12 @@ const testimonials = [
   },
 ];
 
-// Testimonials Component
+
 export default function Testimonials() {
   return (
     <div className="w-full bg-gradient-to-b from-amber-50 to-amber-100 py-16 px-4 sm:px-6 lg:px-8">
-      {/* Heading */}
-      <h2 className="mb-10 text-center text-4xl font-extrabold text-amber-800 tracking-wide">
+  
+      <h2 className="font-playfair mb-10 text-center text-4xl font-extrabold text-amber-800 tracking-wide">
         What People Are Saying
       </h2>
 
@@ -69,7 +69,7 @@ export default function Testimonials() {
 
             {/* Testimonial Content */}
             <div className="px-6 py-8 text-center">
-              <p className="mb-6 text-lg text-gray-700 leading-relaxed">
+              <p className="font-lato mb-6 text-lg text-gray-700 leading-relaxed">
                 "{testimonial.quote}"
               </p>
 
@@ -80,7 +80,7 @@ export default function Testimonials() {
                   alt={testimonial.name}
                   className="h-16 w-16 rounded-full border-4 border-amber-500 shadow-md"
                 />
-                <h3 className="mt-4 text-xl font-bold text-amber-800">
+                <h3 className="font-lato mt-4 text-xl font-bold text-amber-800">
                   {testimonial.name}
                 </h3>
               </div>

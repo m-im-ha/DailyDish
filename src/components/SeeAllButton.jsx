@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 function SeeAllButton() {
   const navigate = useNavigate();
 
-  // Handle navigation to available foods
   function handleSeeAllFoods() {
     navigate("/availablefoods");
   }
@@ -12,7 +11,7 @@ function SeeAllButton() {
     <div className="flex items-center justify-center min-h-screen px-4 bg-gradient-to-b from-amber-50 to-amber-100">
   <div className="text-center max-w-4xl p-8 rounded-3xl shadow-2xl bg-white">
     {/* Header Section */}
-    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-amber-800 tracking-wide leading-tight">
+    <h1 className="font-playfair text-4xl sm:text-5xl lg:text-6xl font-extrabold text-amber-800 tracking-wide leading-tight">
       Share{" "}
       <span className="text-amber-500 drop-shadow-[0_2px_2px_rgba(0,0,0,0.25)]">
         Food, Share Love
@@ -26,14 +25,14 @@ function SeeAllButton() {
     </h1>
 
     {/* Subtitle Section */}
-    <p className="mt-6 text-lg sm:text-xl text-gray-600 font-medium leading-relaxed">
+    <p className="font-lato mt-6 text-lg sm:text-xl text-gray-600 font-medium leading-relaxed">
       Explore a variety of delicious foods waiting to be shared. Make every bite count and brighten someone's day!
     </p>
 
     {/* Button */}
     <button
       onClick={handleSeeAllFoods}
-      className="mt-10 relative inline-flex items-center px-12 py-4 bg-gradient-to-r from-amber-500 to-amber-700 
+      className="font-lato mt-10 relative inline-flex items-center px-12 py-4 bg-gradient-to-r from-amber-500 to-amber-700 
                 text-white font-bold text-lg rounded-full shadow-lg 
                 hover:shadow-2xl transition-all duration-300 ease-in-out 
                 hover:scale-110 active:scale-95 focus:outline-none"

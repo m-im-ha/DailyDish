@@ -4,7 +4,7 @@
 
 ## Live Demo
 
-* - [live site](https://dailydish-1f0f4.web.app/)
+* [live site](https://dailydish-1f0f4.web.app/)
 
 ## Built With
 

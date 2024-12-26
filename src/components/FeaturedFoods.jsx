@@ -34,9 +34,9 @@ function FeaturedFoods() {
   return (
     <div className="bg-gradient-to-b from-amber-50 to-amber-100 py-16">
       <div className="container mx-auto px-4">
-        {/* Section Header */}
+       
         <div className="mb-12 text-center">
-          <h2 className="relative inline-block text-4xl font-black tracking-tight text-amber-800 md:text-5xl">
+          <h2 className="font-playfair relative inline-block text-4xl font-black tracking-tight text-amber-800 md:text-5xl">
             <span className="relative z-10">Featured Foods</span>
             <div className="absolute -bottom-2 left-0 h-3 w-full bg-amber-200/60"></div>
           </h2>
@@ -64,7 +64,7 @@ function FeaturedFoods() {
               <div className="relative z-10 -mt-16 p-6">
                 <div className="rounded-xl bg-white p-6 shadow-lg transition-all duration-300 group-hover:shadow-xl">
                   {/* Title */}
-                  <h3 className="mb-4 text-2xl font-bold text-amber-800">
+                  <h3 className="font-lato mb-4 text-2xl font-bold text-amber-800">
                     {food.foodName}
                   </h3>
 
@@ -74,7 +74,7 @@ function FeaturedFoods() {
                       <div className="rounded-full bg-amber-100 p-2">
                         <FaUtensils className="text-lg text-amber-600" />
                       </div>
-                      <span className="text-lg font-medium text-gray-700">
+                      <span className="font-lato text-lg font-medium text-gray-700">
                         Quantity: {food.foodQuantity}
                       </span>
                     </div>
@@ -83,7 +83,7 @@ function FeaturedFoods() {
                       <div className="rounded-full bg-amber-100 p-2">
                         <FaDollarSign className="text-lg text-amber-600" />
                       </div>
-                      <span className="text-lg font-medium text-gray-700">
+                      <span className="font-lato text-lg font-medium text-gray-700">
                         Price: ${food.foodPrice}
                       </span>
                     </div>
@@ -92,7 +92,7 @@ function FeaturedFoods() {
                       <div className="rounded-full bg-amber-100 p-2">
                         <FaMapMarkerAlt className="text-lg text-amber-600" />
                       </div>
-                      <span className="text-lg font-medium text-gray-700">
+                      <span className="font-lato text-lg font-medium text-gray-700">
                         {food.pickupLocation}
                       </span>
                     </div>
@@ -101,7 +101,7 @@ function FeaturedFoods() {
                   {/* Button */}
                   <button
                     onClick={() => navigate(`/food/${food._id}`)}
-                    className="group relative w-full overflow-hidden rounded-full bg-gradient-to-r from-amber-300 to-amber-500 px-6 py-3 text-lg font-bold text-white shadow-lg transition-all duration-300 hover:shadow-amber-300/30"
+                    className="font-lato group relative w-full overflow-hidden rounded-full bg-gradient-to-r from-amber-300 to-amber-500 px-6 py-3 text-lg font-bold text-white shadow-lg transition-all duration-300 hover:shadow-amber-300/30"
                   >
                     <span className="relative z-10 flex items-center justify-center">
                       View Details

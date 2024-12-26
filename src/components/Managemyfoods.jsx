@@ -87,12 +87,11 @@ function Managemyfoods() {
 
   return (
     <div className="container mx-auto p-4">
-      <h2 className="mb-8 text-4xl font-extrabold text-center text-amber-800">
+      <h2 className="font-playfair mb-8 text-center text-4xl font-extrabold text-amber-800">
         Manage My Foods
       </h2>
 
       {foods.length === 0 ? (
-        // No Food Added Message
         <div className="flex flex-col items-center justify-center gap-6 py-20">
           <p className="text-lg text-gray-600">
             You haven't added any food yet!
@@ -131,7 +130,7 @@ function Managemyfoods() {
               {foods.map((food) => (
                 <tr
                   key={food._id}
-                  className="even:bg-amber-50 odd:bg-white hover:bg-amber-100"
+                  className="odd:bg-white even:bg-amber-50 hover:bg-amber-100"
                 >
                   <td className="border p-4 font-medium text-gray-700">
                     {food.foodName}
@@ -148,13 +147,13 @@ function Managemyfoods() {
                   <td className="border p-4">
                     <div className="flex items-center gap-2">
                       <button
-                        className="rounded-lg bg-blue-500 px-4 py-2 text-white font-medium shadow-md hover:bg-blue-600 transition-all duration-300"
+                        className="rounded-lg bg-blue-500 px-4 py-2 font-medium text-white shadow-md transition-all duration-300 hover:bg-blue-600"
                         onClick={() => setEditingFood(food)}
                       >
                         Update
                       </button>
                       <button
-                        className="rounded-lg bg-red-500 px-4 py-2 text-white font-medium shadow-md hover:bg-red-600 transition-all duration-300"
+                        className="rounded-lg bg-red-500 px-4 py-2 font-medium text-white shadow-md transition-all duration-300 hover:bg-red-600"
                         onClick={() => handleDelete(food._id)}
                       >
                         Delete
@@ -170,33 +169,80 @@ function Managemyfoods() {
 
       {/* Update Modal */}
       {editingFood && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="w-96 rounded-xl bg-white p-6 shadow-lg">
-            <h3 className="mb-4 text-center text-xl font-bold text-gray-800">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-md">
+          <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-xl">
+            <h3 className="mb-6 text-center text-2xl font-extrabold text-amber-800">
               Update Food
             </h3>
-            <input
-              type="text"
-              defaultValue={editingFood.foodName}
-              onChange={(e) =>
-                setEditingFood({ ...editingFood, foodName: e.target.value })
-              }
-              className="mb-4 w-full rounded-lg border p-3 text-gray-700 focus:ring-2 focus:ring-amber-500"
-            />
-            <div className="flex justify-end gap-2">
+
+            <div className="space-y-4">
+              {/* Title */}
+              <label className="block font-bold text-gray-700">Title:</label>
+              <input
+                type="text"
+                defaultValue={editingFood.foodName}
+                onChange={(e) =>
+                  setEditingFood({ ...editingFood, foodName: e.target.value })
+                }
+                className="w-full rounded-lg border border-gray-300 bg-gray-50 p-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              />
+
+              {/* Price */}
+              <label className="block font-bold text-gray-700">Price:</label>
+              <input
+                type="number"
+                defaultValue={editingFood.foodPrice}
+                onChange={(e) =>
+                  setEditingFood({ ...editingFood, foodPrice: e.target.value })
+                }
+                className="w-full rounded-lg border border-gray-300 bg-gray-50 p-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              />
+
+              {/* Quantity */}
+              <label className="block font-bold text-gray-700">Quantity:</label>
+              <input
+                type="number"
+                defaultValue={editingFood.foodQuantity}
+                onChange={(e) =>
+                  setEditingFood({
+                    ...editingFood,
+                    foodQuantity: e.target.value,
+                  })
+                }
+                className="w-full rounded-lg border border-gray-300 bg-gray-50 p-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              />
+
+              {/* Location */}
+              <label className="block font-bold text-gray-700">Location:</label>
+              <input
+                type="text"
+                defaultValue={editingFood.pickupLocation}
+                onChange={(e) =>
+                  setEditingFood({
+                    ...editingFood,
+                    pickupLocation: e.target.value,
+                  })
+                }
+                className="w-full rounded-lg border border-gray-300 bg-gray-50 p-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              />
+            </div>
+
+            <div className="mt-6 flex justify-end gap-4">
               <button
-                className="rounded-lg bg-green-500 px-4 py-2 text-white hover:bg-green-600"
+                className="rounded-lg bg-gradient-to-r from-amber-500 to-amber-700 px-6 py-3 font-bold text-white shadow-lg hover:from-amber-600 hover:to-amber-800 focus:outline-none"
                 onClick={() =>
                   handleUpdate(editingFood._id, {
                     foodName: editingFood.foodName,
                     foodPrice: editingFood.foodPrice,
+                    foodQuantity: editingFood.foodQuantity,
+                    pickupLocation: editingFood.pickupLocation,
                   })
                 }
               >
                 Save
               </button>
               <button
-                className="rounded-lg bg-red-500 px-4 py-2 text-white hover:bg-red-600"
+                className="rounded-lg bg-gradient-to-r from-red-500 to-red-700 px-6 py-3 font-bold text-white shadow-lg hover:from-red-600 hover:to-red-800 focus:outline-none"
                 onClick={() => setEditingFood(null)}
               >
                 Cancel

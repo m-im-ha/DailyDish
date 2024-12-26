@@ -50,32 +50,31 @@ function Myfoodrequest() {
   // No Foods Requested
   if (foods?.length === 0) {
     return (
-      <div className="flex items-center justify-center min-h-screen px-4 bg-gradient-to-b from-amber-50 to-amber-100">
-  <div className="rounded-2xl bg-white p-8 shadow-xl">
-    <h2 className="mb-4 text-center text-4xl font-extrabold text-amber-800">
-      No Food Requests Found!
-    </h2>
-    <p className="mb-6 text-center text-lg text-gray-600">
-      It looks like you haven't requested any food yet. Start exploring and make your first request today!
-    </p>
-    <div className="flex justify-center">
-      <button
-        onClick={() => navigate("/availablefoods")} // Example navigation
-        className="rounded-lg bg-gradient-to-r from-amber-500 to-amber-700 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 hover:from-amber-600 hover:to-amber-800"
-      >
-        Explore Foods
-      </button>
-    </div>
-  </div>
-</div>
-
-
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-amber-50 to-amber-100 px-4">
+        <div className="rounded-2xl bg-white p-8 shadow-xl">
+          <h2 className="mb-4 text-center text-4xl font-extrabold text-amber-800">
+            No Food Requests Found!
+          </h2>
+          <p className="mb-6 text-center text-lg text-gray-600">
+            It looks like you haven't requested any food yet. Start exploring
+            and make your first request today!
+          </p>
+          <div className="flex justify-center">
+            <button
+              onClick={() => navigate("/availablefoods")}
+              className="rounded-lg bg-gradient-to-r from-amber-500 to-amber-700 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 hover:from-amber-600 hover:to-amber-800"
+            >
+              Explore Foods
+            </button>
+          </div>
+        </div>
+      </div>
     );
   }
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h2 className="mb-8 text-center text-4xl font-extrabold text-amber-800">
+      <h2 className="font-playfair mb-8 text-center text-4xl font-extrabold text-amber-800">
         My Food Requests
       </h2>
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">

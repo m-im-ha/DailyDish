@@ -28,7 +28,7 @@ function FoodCard({ food }) {
       <div className="relative z-10 -mt-16 p-6">
         <div className="rounded-xl bg-white p-6 shadow-lg transition-all duration-300 group-hover:shadow-xl">
           {/* Title */}
-          <h3 className="mb-4 text-2xl font-bold text-amber-800">
+          <h3 className="font-lato mb-4 text-2xl font-bold text-amber-800">
             {food.foodName}
           </h3>
 
@@ -38,7 +38,7 @@ function FoodCard({ food }) {
               <div className="rounded-full bg-amber-100 p-2">
                 <FaUtensils className="text-lg text-amber-600" />
               </div>
-              <span className="text-lg font-medium text-gray-700">
+              <span className="font-lato text-lg font-medium text-gray-700">
                 Quantity: {food.foodQuantity}
               </span>
             </div>
@@ -47,7 +47,7 @@ function FoodCard({ food }) {
               <div className="rounded-full bg-amber-100 p-2">
                 <FaDollarSign className="text-lg text-amber-600" />
               </div>
-              <span className="text-lg font-medium text-gray-700">
+              <span className="font-lato text-lg font-medium text-gray-700">
                 Price: ${food.foodPrice}
               </span>
             </div>
@@ -56,7 +56,7 @@ function FoodCard({ food }) {
               <div className="rounded-full bg-amber-100 p-2">
                 <FaMapMarkerAlt className="text-lg text-amber-600" />
               </div>
-              <span className="text-lg font-medium text-gray-700">
+              <span className="font-lato text-lg font-medium text-gray-700">
                 {food.pickupLocation}
               </span>
             </div>
@@ -65,7 +65,7 @@ function FoodCard({ food }) {
           {/* Button */}
           <button
              onClick={() => handleViewDetails(food._id)}
-            className="group relative w-full overflow-hidden rounded-full bg-gradient-to-r from-amber-300 to-amber-500 px-6 py-3 text-lg font-bold text-white shadow-lg transition-all duration-300 hover:shadow-amber-300/30"
+            className="font-lato group relative w-full overflow-hidden rounded-full bg-gradient-to-r from-amber-300 to-amber-500 px-6 py-3 text-lg font-bold text-white shadow-lg transition-all duration-300 hover:shadow-amber-300/30"
           >
             <span className="relative z-10 flex items-center justify-center">
               View Details

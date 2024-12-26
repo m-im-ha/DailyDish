@@ -36,7 +36,7 @@ const categories = [
 function PopularCategories() {
   return (
     <div className="w-full py-12 bg-gradient-to-b from-amber-50 to-amber-100">
-  <h2 className="mb-10 text-center text-4xl font-extrabold text-amber-800 tracking-wide">
+  <h2 className="font-playfair mb-10 text-center text-4xl font-extrabold text-amber-800 tracking-wide">
     Popular Categories
   </h2>
 
@@ -53,7 +53,7 @@ function PopularCategories() {
         </div>
 
         {/* Category Name */}
-        <p className="my-4 text-lg font-bold text-amber-800">{category.name}</p>
+        <p className="font-lato my-4 text-lg font-bold text-amber-800">{category.name}</p>
       </Link>
     ))}
   </div>

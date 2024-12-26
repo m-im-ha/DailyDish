@@ -16,32 +16,32 @@ function Footer() {
       <div className="container mx-auto px-6 sm:px-10 md:px-16 grid grid-cols-1 md:grid-cols-3 gap-12">
         {/* Website Information */}
         <div>
-          <h3 className="text-4xl font-extrabold text-amber-800 mb-6">
+          <h3 className="font-playfair text-4xl font-extrabold text-amber-800 mb-6">
             Daily<span className="text-amber-600">Dish</span>
           </h3>
-          <p className="text-gray-700 text-lg leading-relaxed">
+          <p className="font-lato text-gray-700 text-lg leading-relaxed">
             Your ultimate destination for tasty food and delightful experiences.
           </p>
         </div>
 
         {/* Contact Information */}
         <div>
-          <h4 className="text-2xl font-bold text-amber-800 mb-6">Contact Us</h4>
+          <h4 className="font-lato text-2xl font-bold text-amber-800 mb-6">Contact Us</h4>
           <div className="space-y-4">
             <div className="flex items-center text-lg text-gray-700">
               <FaEnvelope className="mr-3 text-amber-500" />
-              <span>support@dailyDish.com</span>
+              <span className="font-lato">support@dailyDish.com</span>
             </div>
             <div className="flex items-center text-lg text-gray-700">
               <FaPhoneAlt className="mr-3 text-amber-500" />
-              <span>+88 0179 9332 841</span>
+              <span className="font-lato">+88 0179 9332 841</span>
             </div>
           </div>
         </div>
 
         {/* Social Media Links */}
         <div>
-          <h4 className="text-2xl font-bold text-amber-800 mb-6">Connect With Us</h4>
+          <h4 className="font-lato text-2xl font-bold text-amber-800 mb-6">Let's Connect</h4>
           <div className="flex space-x-4">
             <a
               href="https://www.facebook.com/kirimvesValitsos"

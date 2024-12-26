@@ -83,10 +83,10 @@ function AddFood() {
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-amber-50 to-amber-100 px-4 py-10">
       <div className="w-full max-w-4xl overflow-hidden rounded-2xl bg-white shadow-xl">
         <div className="p-8 text-center">
-          <h2 className="mb-6 text-4xl font-extrabold text-amber-800">
+          <h2 className="font-playfair mb-6 text-5xl font-extrabold text-amber-800">
             Share Your Delicious Dish
           </h2>
-          <p className="mb-8 text-lg text-gray-600">
+          <p className="font-lato mb-8 text-lg text-gray-600">
             Contribute to reducing food waste and make a difference by sharing
             your surplus food with others in need.
           </p>
