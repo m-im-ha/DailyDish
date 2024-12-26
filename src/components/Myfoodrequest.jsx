@@ -17,7 +17,7 @@ function Myfoodrequest() {
     queryKey: ["myRequestedFoods"],
     queryFn: async () => {
       const response = await axios.get(
-        "http://localhost:5000/foods/myrequestedfoods",
+        "https://dailydishserver.vercel.app/foods/myrequestedfoods",
         { withCredentials: true },
       );
       return response.data;
@@ -78,7 +78,11 @@ function Myfoodrequest() {
             />
             <div className="p-6">
               <h3 className="mb-2 text-2xl font-bold text-pink-400">
-                {food.foodName} (<span className="text-green-400 uppercase">{food.foodStatus}</span>)
+                {food.foodName} (
+                <span className="uppercase text-green-400">
+                  {food.foodStatus}
+                </span>
+                )
               </h3>
 
               {/* Donator's Name */}

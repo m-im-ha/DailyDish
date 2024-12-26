@@ -14,7 +14,7 @@ function FeaturedFoods() {
       try {
         setLoading(true);
         const response = await axios.get(
-          "http://localhost:5000/foods/featuredfoods",
+          "https://dailydishserver.vercel.app/foods/featuredfoods",
         );
         setFeaturedFoods(response.data);
       } catch (error) {

@@ -38,7 +38,7 @@ function AddFood() {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/foods/addfood`,
+        `https://dailydishserver.vercel.app/foods/addfood`,
         foodData,
         {
           withCredentials: true,
@@ -81,7 +81,6 @@ function AddFood() {
 
   return (
     <div className="flex min-h-screen items-center justify-center px-4 py-10">
-
       <div className="w-full max-w-md overflow-hidden rounded-2xl border border-gray-700 bg-gray-800 shadow-2xl">
         <div className="p-8 text-center">
           <h2 className="mb-4 bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 bg-clip-text text-4xl font-extrabold text-transparent">

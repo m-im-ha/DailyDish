@@ -22,7 +22,7 @@ function FoodDetailsCard() {
       try {
         setIsLoading(true);
         const response = await axios.get(
-          `http://localhost:5000/foods/foodDetails/${id}`,
+          `https://dailydishserver.vercel.app/foods/foodDetails/${id}`,
           {
             withCredentials: true,
           },
@@ -66,15 +66,18 @@ function FoodDetailsCard() {
 
       // Add food to requested foods
       await axios.post(
-        "http://localhost:5000/foods/requestedfoods",
+        "https://dailydishserver.vercel.app/foods/requestedfoods",
         requestData,
         { withCredentials: true },
       );
 
       // Remove food from available foods
-      await axios.delete(`http://localhost:5000/foods/delete/${food._id}`, {
-        withCredentials: true,
-      });
+      await axios.delete(
+        `https://dailydishserver.vercel.app/foods/delete/${food._id}`,
+        {
+          withCredentials: true,
+        },
+      );
 
       setIsModalOpen(false);
       Swal.fire({

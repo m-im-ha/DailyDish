@@ -15,7 +15,7 @@ function Availablefoods() {
     async function fetchAvailablefoods() {
       try {
         const response = await axios.get(
-          `http://localhost:5000/foods/availablefoods`
+          `https://dailydishserver.vercel.app/foods/availablefoods`,
         );
         setAvailablefoods(response.data);
         setFilteredFoods(response.data);
@@ -32,7 +32,7 @@ function Availablefoods() {
 
     // Apply Filter (Search)
     foods = foods.filter((food) =>
-      food?.foodName?.toLowerCase().includes(searchQuery.toLowerCase())
+      food?.foodName?.toLowerCase().includes(searchQuery.toLowerCase()),
     );
 
     // Sorting
@@ -70,7 +70,7 @@ function Availablefoods() {
             onClick={() => setSortKey("foodPrice")}
             className={`rounded-lg px-4 py-2 text-black transition duration-300 ${
               sortKey === "foodPrice"
-                ? "bg-green-600 shadow-lg text-white"
+                ? "bg-green-600 text-white shadow-lg"
                 : "bg-green-200 hover:bg-green-500"
             }`}
           >
@@ -82,7 +82,7 @@ function Availablefoods() {
             onClick={() => setSortKey("expiredDate")}
             className={`rounded-lg px-4 py-2 text-black transition duration-300 ${
               sortKey === "expiredDate"
-                ? "bg-yellow-600 shadow-lg text-white"
+                ? "bg-yellow-600 text-white shadow-lg"
                 : "bg-yellow-200 hover:bg-yellow-500"
             }`}
           >
@@ -96,7 +96,7 @@ function Availablefoods() {
             onClick={() => setIsThreeColumn(true)}
             className={`rounded-lg px-4 py-2 transition duration-300 ${
               isThreeColumn
-                ? "bg-blue-600 shadow-lg text-white"
+                ? "bg-blue-600 text-white shadow-lg"
                 : "bg-blue-200 hover:bg-blue-500"
             }`}
           >
@@ -107,7 +107,7 @@ function Availablefoods() {
             onClick={() => setIsThreeColumn(false)}
             className={`rounded-lg px-4 py-2 transition duration-300 ${
               !isThreeColumn
-                ? "bg-blue-600 shadow-lg text-white"
+                ? "bg-blue-600 text-white shadow-lg"
                 : "bg-blue-200 hover:bg-blue-500"
             }`}
           >
@@ -129,7 +129,7 @@ function Availablefoods() {
                 <div key={food._id}>
                   <FoodCard food={food} />
                 </div>
-              )
+              ),
           )
         ) : (
           <div className="col-span-full py-10 text-center">

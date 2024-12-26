@@ -52,9 +52,9 @@ export default function Foodprovider({ children }) {
         // Set cookie on server and update state
         axios
           .post(
-            "http://localhost:5000/auth/login",
+            "https://dailydishserver.vercel.app/auth/login",
             { email: currentUser.email },
-            { withCredentials: true }
+            { withCredentials: true },
           )
           .then((res) => {
             console.log("Cookie set:", res.data);
@@ -70,19 +70,22 @@ export default function Foodprovider({ children }) {
           })
           .finally(() => {
             setLoading(false);
-            setInitialAuthCheck(false); 
+            setInitialAuthCheck(false);
           });
       } else {
-        
         axios
-          .post("http://localhost:5000/auth/logout", {}, { withCredentials: true })
+          .post(
+            "https://dailydishserver.vercel.app/auth/logout",
+            {},
+            { withCredentials: true },
+          )
           .then(() => {
             setUser(null);
           })
           .catch((err) => console.error("Failed to clear cookie:", err.message))
           .finally(() => {
             setLoading(false);
-            setInitialAuthCheck(false); 
+            setInitialAuthCheck(false);
           });
       }
     });
@@ -94,7 +97,7 @@ export default function Foodprovider({ children }) {
 
   if (initialAuthCheck) {
     console.log("Waiting for Firebase auth check...");
-    return null; 
+    return null;
   }
 
   return (

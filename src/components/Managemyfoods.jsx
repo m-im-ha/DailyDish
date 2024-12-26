@@ -12,9 +12,12 @@ function Managemyfoods() {
     const fetchFoods = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:5000/foods/managefoods", {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          "https://dailydishserver.vercel.app/foods/managefoods",
+          {
+            withCredentials: true,
+          },
+        );
         setFoods(res.data);
       } catch (error) {
         console.error("Error fetching foods:", error.message);
@@ -44,9 +47,12 @@ function Managemyfoods() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`http://localhost:5000/foods/delete/${id}`, {
-            withCredentials: true,
-          });
+          await axios.delete(
+            `https://dailydishserver.vercel.app/foods/delete/${id}`,
+            {
+              withCredentials: true,
+            },
+          );
           setFoods(foods.filter((food) => food._id !== id));
           Swal.fire({
             title: "Deleted!",
@@ -54,7 +60,6 @@ function Managemyfoods() {
             icon: "success",
             confirmButtonColor: "Ok",
           });
-          
         } catch (error) {
           console.error("Error deleting food:", error.message);
           Swal.fire({
@@ -71,7 +76,7 @@ function Managemyfoods() {
   const handleUpdate = async (id, updatedData) => {
     try {
       await axios.put(
-        `http://localhost:5000/foods/updatefood/${id}`,
+        `https://dailydishserver.vercel.app/foods/updatefood/${id}`,
         updatedData,
         { withCredentials: true },
       );

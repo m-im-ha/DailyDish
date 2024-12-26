@@ -37,7 +37,7 @@ function Login() {
       setUser({ ...user });
 
       await axios.post(
-        "http://localhost:5000/auth/login",
+        "https://dailydishserver.vercel.app/auth/login",
         { email },
         { withCredentials: true },
       );
@@ -75,7 +75,7 @@ function Login() {
       setUser(result.user);
 
       await axios.post(
-        "http://localhost:5000/auth/google-login",
+        "https://dailydishserver.vercel.app/auth/google-login",
         { email: result.user.email },
         { withCredentials: true },
       );
