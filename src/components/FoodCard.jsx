@@ -65,7 +65,7 @@ function FoodCard({ food }) {
           {/* Button */}
           <button
              onClick={() => handleViewDetails(food._id)}
-            className="group relative w-full overflow-hidden rounded-full bg-gradient-to-r from-amber-500 to-amber-700 px-6 py-3 text-lg font-bold text-white shadow-lg transition-all duration-300 hover:shadow-amber-300/30"
+            className="group relative w-full overflow-hidden rounded-full bg-gradient-to-r from-amber-300 to-amber-500 px-6 py-3 text-lg font-bold text-white shadow-lg transition-all duration-300 hover:shadow-amber-300/30"
           >
             <span className="relative z-10 flex items-center justify-center">
               View Details

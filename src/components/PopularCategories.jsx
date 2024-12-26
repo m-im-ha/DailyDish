@@ -35,25 +35,30 @@ const categories = [
 
 function PopularCategories() {
   return (
-    <div className="container mx-auto py-10">
-      <h2 className="mb-6 text-center text-3xl font-bold text-pink-500">
-        Popular Categories
-      </h2>
-      <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
-        {categories.map((category) => (
-          <Link
-            key={category.id}
-            // to={category.path}
-            className="flex flex-col items-center justify-center rounded-lg bg-gray-800 p-6 shadow-lg transition-transform hover:scale-105"
-          >
-            <div className="text-4xl text-yellow-400">{category.icon}</div>
-            <p className="mt-4 text-lg font-semibold text-gray-200">
-              {category.name}
-            </p>
-          </Link>
-        ))}
-      </div>
-    </div>
+    <div className="w-full py-12 bg-gradient-to-b from-amber-50 to-amber-100">
+  <h2 className="mb-10 text-center text-4xl font-extrabold text-amber-800 tracking-wide">
+    Popular Categories
+  </h2>
+
+  <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-4 px-5">
+    {categories.map((category) => (
+      <Link
+        key={category.id}
+        // to={category.path}
+        className="flex flex-col items-center justify-center rounded-xl bg-white shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+      >
+        {/* Icon Section */}
+        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-r from-amber-300 to-amber-500 shadow-lg mt-5">
+          <div className="text-4xl text-white">{category.icon}</div>
+        </div>
+
+        {/* Category Name */}
+        <p className="my-4 text-lg font-bold text-amber-800">{category.name}</p>
+      </Link>
+    ))}
+  </div>
+</div>
+
   );
 }
 

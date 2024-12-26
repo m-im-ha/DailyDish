@@ -1,5 +1,6 @@
 import { FaQuoteLeft } from "react-icons/fa";
 
+// Testimonials Data
 const testimonials = [
   {
     id: 1,
@@ -22,29 +23,67 @@ const testimonials = [
       "The food was fresh and delicious! I'm so grateful for this platform. Highly recommend it!",
     image: "https://randomuser.me/api/portraits/women/68.jpg",
   },
+  {
+    id: 4,
+    name: "James Brown",
+    quote:
+      "This platform is life-changing! I can't believe how easy it is to request and share food. Great job!",
+    image: "https://randomuser.me/api/portraits/men/45.jpg",
+  },
+  {
+    id: 5,
+    name: "Olivia Davis",
+    quote:
+      "Sharing food has never been easier. Thank you for helping us reduce food waste and feed those in need!",
+    image: "https://randomuser.me/api/portraits/women/77.jpg",
+  },
+  {
+    id: 6,
+    name: "Michael Smith",
+    quote:
+      "Excellent service and very responsive team! Highly recommend this platform to everyone.",
+    image: "https://randomuser.me/api/portraits/men/50.jpg",
+  },
 ];
 
+// Testimonials Component
 export default function Testimonials() {
   return (
-    <div className="container mx-auto py-10">
-      <h2 className="mb-6 text-3xl font-bold text-center text-green-500">
+    <div className="w-full bg-gradient-to-b from-amber-50 to-amber-100 py-16 px-4 sm:px-6 lg:px-8">
+      {/* Heading */}
+      <h2 className="mb-10 text-center text-4xl font-extrabold text-amber-800 tracking-wide">
         What People Are Saying
       </h2>
-      <div className="grid gap-8 md:grid-cols-3">
+
+      {/* Testimonials Grid */}
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {testimonials.map((testimonial) => (
           <div
             key={testimonial.id}
-            className="rounded-lg bg-gray-800 p-6 shadow-lg"
+            className="mt-10 flex flex-col items-center rounded-2xl bg-white shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
           >
-            <FaQuoteLeft className="text-yellow-400 text-4xl mb-4" />
-            <p className="text-gray-300 mb-4">{testimonial.quote}</p>
-            <div className="flex items-center space-x-4">
-              <img
-                src={testimonial.image}
-                alt={testimonial.name}
-                className="h-12 w-12 rounded-full border-2 border-pink-500"
-              />
-              <p className="text-gray-200 font-semibold">{testimonial.name}</p>
+            {/* Quote Icon */}
+            <div className="relative -mt-10 mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-r from-amber-300 to-amber-500 shadow-lg">
+              <FaQuoteLeft className="text-white text-3xl" />
+            </div>
+
+            {/* Testimonial Content */}
+            <div className="px-6 py-8 text-center">
+              <p className="mb-6 text-lg text-gray-700 leading-relaxed">
+                "{testimonial.quote}"
+              </p>
+
+              {/* Profile Image and Name */}
+              <div className="flex flex-col items-center">
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  className="h-16 w-16 rounded-full border-4 border-amber-500 shadow-md"
+                />
+                <h3 className="mt-4 text-xl font-bold text-amber-800">
+                  {testimonial.name}
+                </h3>
+              </div>
             </div>
           </div>
         ))}

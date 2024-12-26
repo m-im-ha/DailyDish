@@ -13,6 +13,8 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import FoodContext from "../provider/FoodContext";
 
+import login_bg from "/assets/photos/login_bg.jpg";
+
 function Login() {
   const { loginUser, setUser, signInWithGoogle, setLoading } =
     useContext(FoodContext);
@@ -22,7 +24,7 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [isPasswordTyped, setIsPasswordTyped] = useState(false);
 
-  // Handle Firebase + Node login
+  // Handle Firebase + Server login
   async function handleLogin(e) {
     e.preventDefault();
     const form = new FormData(e.target);
@@ -95,100 +97,92 @@ function Login() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4 py-10">
-      <ToastContainer />
-      <div className="w-full max-w-md overflow-hidden rounded-2xl border border-gray-700 bg-gray-800 shadow-2xl">
-        <div className="p-8 text-center">
-          <div className="mb-8">
-            <h2 className="mb-4 bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 bg-clip-text text-4xl font-extrabold text-gray-100 text-transparent">
-              Welcome Back
-            </h2>
-            <p className="text-sm text-gray-400">
-              Enter your credentials to access your account
-            </p>
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-amber-50 to-amber-100 px-6 py-10">
+  <ToastContainer />
+
+  <div className="flex w-full max-w-6xl overflow-hidden rounded-3xl shadow-2xl bg-white">
+    {/* Left Side: Form */}
+    <div className="w-full md:w-1/2 p-8 sm:p-12">
+      <h2 className="mb-6 text-4xl font-extrabold text-amber-800">Welcome Back</h2>
+      <p className="mb-8 text-lg text-gray-600">Enter your credentials to access your account</p>
+
+      <form onSubmit={handleLogin} className="space-y-6">
+        {/* Email Input */}
+        <div className="relative">
+          <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+            <FaEnvelope className="text-gray-400" />
           </div>
+          <input
+            type="email"
+            placeholder="Email Address"
+            name="email"
+            className="w-full rounded-lg border border-gray-300 bg-gray-50 py-3 pl-10 pr-4 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
+            required
+          />
+        </div>
 
-          <form onSubmit={handleLogin} className="space-y-6">
-            {/* Email Input */}
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-                <FaEnvelope className="text-gray-400" />
-              </div>
-              <input
-                type="email"
-                placeholder="Email Address"
-                name="email"
-                className="w-full rounded-xl border border-gray-600 bg-gray-700 py-3 pl-10 pr-4 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400"
-                required
-              />
-            </div>
-
-            {/* Password Input */}
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-                <FaLock className="text-gray-400" />
-              </div>
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Password"
-                name="password"
-                className="w-full rounded-xl border border-gray-600 bg-gray-700 py-3 pl-10 pr-10 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400"
-                required
-                onChange={(e) => setIsPasswordTyped(e.target.value.length > 0)}
-              />
-              {isPasswordTyped && (
-                <div
-                  className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? (
-                    <FaEyeSlash className="text-gray-400" />
-                  ) : (
-                    <FaEye className="text-gray-400" />
-                  )}
-                </div>
+        {/* Password Input */}
+        <div className="relative">
+          <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+            <FaLock className="text-gray-400" />
+          </div>
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            name="password"
+            className="w-full rounded-lg border border-gray-300 bg-gray-50 py-3 pl-10 pr-10 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
+            required
+            onChange={(e) => setIsPasswordTyped(e.target.value.length > 0)}
+          />
+          {isPasswordTyped && (
+            <div
+              className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? (
+                <FaEyeSlash className="text-gray-400" />
+              ) : (
+                <FaEye className="text-gray-400" />
               )}
             </div>
-
-            {/* Login Button */}
-            <button
-              type="submit"
-              className="w-full transform rounded-xl bg-gradient-to-r from-pink-500 to-red-500 py-3 font-bold text-white transition-all duration-300 hover:scale-105 hover:from-pink-600 hover:to-red-600 active:scale-95"
-            >
-              Login
-            </button>
-          </form>
-
-          {/* Divider */}
-          <div className="my-6 flex items-center space-x-4">
-            <div className="h-px flex-grow bg-gray-600"></div>
-            <span className="text-sm text-gray-400">OR</span>
-            <div className="h-px flex-grow bg-gray-600"></div>
-          </div>
-
-          {/* Google Login */}
-          <button
-            onClick={handleSignInWithGoogle}
-            className="flex w-full transform items-center justify-center rounded-xl border border-gray-600 bg-gray-700 py-3 text-gray-200 transition-all duration-300 hover:scale-105 hover:bg-gray-600 active:scale-95"
-          >
-            <FaGoogle className="mr-3 text-yellow-400" />
-            Continue with Google
-          </button>
-
-          <div className="mt-6 text-center">
-            <span className="text-sm text-gray-400">
-              Don't have an account?{" "}
-              <Link
-                to="/register"
-                className="text-pink-400 hover:text-pink-500"
-              >
-                Register Now
-              </Link>
-            </span>
-          </div>
+          )}
         </div>
+
+        <button
+          type="submit"
+          className="w-full rounded-lg bg-gradient-to-r from-amber-500 to-amber-700 py-3 font-bold text-white hover:from-amber-600 hover:to-amber-800 focus:outline-none"
+        >
+          Login
+        </button>
+      </form>
+
+      {/* Google Login */}
+      <div className="mt-8 flex flex-col items-center">
+        <div className="mb-4 text-gray-500">Or</div>
+        <button
+          onClick={handleSignInWithGoogle}
+          className="flex w-full transform items-center justify-center rounded-lg border border-gray-300 bg-white py-3 text-gray-700 transition-all duration-300 hover:scale-105 hover:shadow-md"
+        >
+          <FaGoogle className="mr-3 text-amber-500" />
+          Continue with Google
+        </button>
+      </div>
+
+      <div className="mt-6 text-center text-sm text-gray-600">
+        Don't have an account? 
+        <Link to="/register" className="text-amber-500 hover:text-amber-600">
+          Register Now
+        </Link>
       </div>
     </div>
+
+    {/* Right Side: Image Section */}
+    <div className="hidden md:block w-1/2 bg-cover bg-center" style={{
+      backgroundImage: `url(${login_bg})`
+    }}></div>
+  </div>
+</div>
+
   );
 }
 

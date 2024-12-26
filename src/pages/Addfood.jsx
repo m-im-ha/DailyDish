@@ -80,27 +80,31 @@ function AddFood() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4 py-10">
-      <div className="w-full max-w-md overflow-hidden rounded-2xl border border-gray-700 bg-gray-800 shadow-2xl">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-amber-50 to-amber-100 px-4 py-10">
+      <div className="w-full max-w-4xl overflow-hidden rounded-2xl bg-white shadow-xl">
         <div className="p-8 text-center">
-          <h2 className="mb-4 bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 bg-clip-text text-4xl font-extrabold text-transparent">
-            Add Food Details
+          <h2 className="mb-6 text-4xl font-extrabold text-amber-800">
+            Share Your Delicious Dish
           </h2>
-          <p className="mb-6 text-sm text-gray-400">
-            Fill in the details to share your food!
+          <p className="mb-8 text-lg text-gray-600">
+            Contribute to reducing food waste and make a difference by sharing
+            your surplus food with others in need.
           </p>
 
-          <form onSubmit={handleAddFood} className="space-y-6">
+          <form
+            onSubmit={handleAddFood}
+            className="grid grid-cols-1 gap-6 md:grid-cols-2"
+          >
             {/* Food Name */}
             <div className="relative">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-                <FaUtensils className="text-gray-400" />
+                <FaUtensils className="text-amber-600" />
               </div>
               <input
                 type="text"
                 placeholder="Food Name"
                 name="foodName"
-                className="w-full rounded-xl border border-gray-600 bg-gray-700 py-3 pl-10 pr-4 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400"
+                className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
                 required
               />
             </div>
@@ -108,13 +112,13 @@ function AddFood() {
             {/* Food Image */}
             <div className="relative">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-                <FaImage className="text-gray-400" />
+                <FaImage className="text-amber-600" />
               </div>
               <input
                 type="url"
                 placeholder="Food Image URL"
                 name="foodImage"
-                className="w-full rounded-xl border border-gray-600 bg-gray-700 py-3 pl-10 pr-4 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400"
+                className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
                 required
               />
             </div>
@@ -122,14 +126,14 @@ function AddFood() {
             {/* Food Quantity */}
             <div className="relative">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-                <FaUtensils className="text-gray-400" />
+                <FaUtensils className="text-amber-600" />
               </div>
               <input
                 type="number"
                 placeholder="Food Quantity"
                 name="foodQuantity"
                 min="1"
-                className="w-full rounded-xl border border-gray-600 bg-gray-700 py-3 pl-10 pr-4 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400"
+                className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
                 required
               />
             </div>
@@ -137,14 +141,14 @@ function AddFood() {
             {/* Food Price */}
             <div className="relative">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-                <LuBadgeDollarSign className="text-gray-400" />
+                <LuBadgeDollarSign className="text-amber-600" />
               </div>
               <input
                 type="number"
                 placeholder="Food Price"
                 name="foodPrice"
                 min="1"
-                className="w-full rounded-xl border border-gray-600 bg-gray-700 py-3 pl-10 pr-4 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400"
+                className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
                 required
               />
             </div>
@@ -152,13 +156,13 @@ function AddFood() {
             {/* Pickup Location */}
             <div className="relative">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-                <FaMapMarkerAlt className="text-gray-400" />
+                <FaMapMarkerAlt className="text-amber-600" />
               </div>
               <input
                 type="text"
                 placeholder="Pickup Location"
                 name="pickupLocation"
-                className="w-full rounded-xl border border-gray-600 bg-gray-700 py-3 pl-10 pr-4 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400"
+                className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
                 required
               />
             </div>
@@ -166,12 +170,12 @@ function AddFood() {
             {/* Expired Date */}
             <div className="relative">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-                <FaCalendarAlt className="text-gray-400" />
+                <FaCalendarAlt className="text-amber-600" />
               </div>
               <input
                 type="date"
                 name="expiredDate"
-                className="w-full rounded-xl border border-gray-600 bg-gray-700 py-3 pl-10 pr-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-pink-400"
+                className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
                 required
               />
             </div>
@@ -180,7 +184,7 @@ function AddFood() {
             <div className="relative">
               <select
                 name="foodStatus"
-                className="w-full rounded-xl border border-gray-600 bg-gray-700 py-3 text-gray-200 focus:outline-none focus:ring-2 focus:ring-pink-400"
+                className="w-full rounded-lg border border-gray-300 bg-white py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
                 required
               >
                 <option value="available">Available</option>
@@ -189,25 +193,27 @@ function AddFood() {
             </div>
 
             {/* Additional Notes */}
-            <div className="relative">
+            <div className="relative md:col-span-2">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-                <FaStickyNote className="text-gray-400" />
+                <FaStickyNote className="text-amber-600" />
               </div>
               <textarea
                 placeholder="Additional Notes"
                 name="additionalNotes"
                 rows="3"
-                className="w-full rounded-xl border border-gray-600 bg-gray-700 py-3 pl-10 pr-4 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400"
+                className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
               ></textarea>
             </div>
 
             {/* Submit Button */}
-            <button
-              type="submit"
-              className="w-full transform rounded-xl bg-gradient-to-r from-pink-500 to-red-500 py-3 font-bold text-white transition-all duration-300 hover:scale-105 hover:from-pink-600 hover:to-red-600 active:scale-95"
-            >
-              Add Food
-            </button>
+            <div className="md:col-span-2">
+              <button
+                type="submit"
+                className="w-full rounded-lg bg-gradient-to-r from-amber-500 to-amber-700 py-3 font-bold text-white transition-all duration-300 hover:from-amber-600 hover:to-amber-800"
+              >
+                Add Food
+              </button>
+            </div>
           </form>
         </div>
       </div>

@@ -57,7 +57,7 @@ function Availablefoods() {
             <input
               type="text"
               placeholder="Search foods..."
-              className="w-full rounded-full border-2 border-amber-200 bg-white py-4 pl-14 pr-6 text-lg text-gray-700 shadow-lg transition-all duration-300 placeholder:text-amber-400 hover:border-amber-300 hover:shadow-amber-100 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-200"
+              className="w-full rounded-full border-2 border-amber-200 bg-white py-4 pl-14 pr-6 text-lg text-gray-700 shadow-lg transition-all duration-300 placeholder:text-amber-500 hover:border-amber-300 hover:shadow-amber-100 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-200"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
