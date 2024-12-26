@@ -35,6 +35,8 @@ function AddFood() {
       },
       foodStatus: form.get("foodStatus"),
     };
+    console.log("Food Data Sent:", foodData);
+
 
     try {
       const response = await axios.post(

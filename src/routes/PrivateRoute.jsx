@@ -8,17 +8,17 @@ function PrivateRoute({ children }) {
   const { user, loading } = useContext(FoodContext);
   const location = useLocation();
 
-  console.log("Private Route - User:", user);
+  // console.log("Private Route - User:", user);
 
   if (loading) return <Loading />;
 
   // Redirect to login if no user is found
   if (!user) {
-    console.log("Private Route - Redirecting to login...");
+    // console.log("Private Route - Redirecting to login...");
     return <Navigate state={location.pathname} to="/login" />;
   }
 
-  console.log("Private Route - Access granted!");
+  // console.log("Private Route - Access granted!");
   return children;
 }
 

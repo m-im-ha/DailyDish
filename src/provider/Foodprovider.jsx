@@ -46,7 +46,7 @@ export default function Foodprovider({ children }) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log("Firebase Auth State Changed:", currentUser);
+      // console.log("Firebase Auth State Changed:", currentUser);
 
       if (currentUser?.email) {
         // Set cookie on server and update state
@@ -93,10 +93,10 @@ export default function Foodprovider({ children }) {
     return () => unsubscribe();
   }, []);
 
-  console.log("User from provider:", user);
+  // console.log("User from provider:", user);
 
   if (initialAuthCheck) {
-    console.log("Waiting for Firebase auth check...");
+    // console.log("Waiting for Firebase auth check...");
     return null;
   }
 
