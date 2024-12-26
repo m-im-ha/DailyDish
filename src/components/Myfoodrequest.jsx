@@ -62,54 +62,55 @@ function Myfoodrequest() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h2 className="mb-6 text-center text-3xl font-bold text-pink-400">
+      <h2 className="mb-8 text-center text-4xl font-extrabold text-amber-800">
         My Food Requests
       </h2>
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {foods.map((food) => (
           <div
             key={food._id}
-            className="overflow-hidden rounded-xl bg-gray-800 text-gray-200 shadow-lg"
+            className="group overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
           >
-            <img
-              className="h-48 w-full object-cover"
-              src={food.foodImage}
-              alt={food.foodName}
-            />
-            <div className="p-6">
-              <h3 className="mb-2 text-2xl font-bold text-pink-400">
-                {food.foodName} (
-                <span className="uppercase text-green-400">
-                  {food.foodStatus}
-                </span>
-                )
-              </h3>
+            <div className="relative h-64 overflow-hidden">
+              <img
+                className="h-full w-full transform object-cover transition-transform duration-700 group-hover:scale-110"
+                src={food.foodImage}
+                alt={food.foodName}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            </div>
+            <div className="relative z-10 -mt-16 p-6">
+              <div className="rounded-xl bg-white p-6 shadow-lg transition-all duration-300 group-hover:shadow-xl">
+                <h3 className="mb-4 truncate text-2xl font-bold text-amber-800">
+                  {food.foodName}
+                </h3>
 
-              {/* Donator's Name */}
-              <p className="mb-2 flex items-center text-lg">
-                <FaUser className="mr-2 text-blue-400" />
-                <span className="font-semibold">
-                  Donator: {food.donatorName}
-                </span>
-              </p>
+                <p className="mb-3 flex items-center text-lg text-gray-700">
+                  <FaUser className="mr-2 text-blue-500" />
+                  <span className="truncate font-medium">
+                    Donator: {food.donatorName}
+                  </span>
+                </p>
 
-              {/* Pickup Location */}
-              <p className="mb-2 flex items-center text-lg">
-                <FaMapMarkerAlt className="mr-2 text-yellow-400" />
-                Pickup: {food.pickupLocation}
-              </p>
+                <p className="mb-3 flex items-center text-lg text-gray-700">
+                  <FaMapMarkerAlt className="mr-2 text-yellow-500" />
+                  {food.pickupLocation}
+                </p>
 
-              {/* Expire Date */}
-              <p className="mb-2 flex items-center text-lg">
-                <FaCalendarAlt className="mr-2 text-red-400" />
-                Expiry: {new Date(food.expiredDate).toDateString()}
-              </p>
+                <p className="mb-3 flex items-center text-lg text-gray-700">
+                  <FaCalendarAlt className="mr-2 text-red-500" />
+                  Expiry: {new Date(food.expiredDate).toDateString()}
+                </p>
 
-              {/* Request Date */}
-              <p className="mb-2 flex items-center text-lg">
-                <FaCalendarAlt className="mr-2 text-green-400" />
-                Requested: {new Date(food.requestDate).toDateString()}
-              </p>
+                <p className="flex items-center text-lg text-gray-700">
+                  <FaCalendarAlt className="mr-2 text-green-500" />
+                  Requested: {new Date(food.requestDate).toDateString()}
+                </p>
+
+                <p className="mt-4 text-lg font-semibold text-gray-700">
+                  Status: <span className="text-green-500">Requested</span>
+                </p>
+              </div>
             </div>
           </div>
         ))}

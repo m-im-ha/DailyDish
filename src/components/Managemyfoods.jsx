@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import Loading from "../ui/Loading";
 
 function Managemyfoods() {
   const [foods, setFoods] = useState([]);
@@ -94,111 +95,104 @@ function Managemyfoods() {
     }
   };
 
-  if (loading) return <p className="text-center text-white">Loading...</p>;
+  if (loading) return <Loading/>;
 
   return (
     <div className="container mx-auto p-4">
-      <h2 className="mb-6 text-2xl font-bold">Manage My Foods</h2>
-      <table className="min-w-full table-auto border-collapse border border-gray-800 text-gray-200">
-        <thead>
-          <tr className="bg-gray-700">
-            <th className="border p-2">Name</th>
-            <th className="border p-2">Price</th>
-            <th className="border p-2">Quantity</th>
-            <th className="border p-2">Location</th>
-            <th className="border p-2">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {foods.map((food) => (
-            <tr key={food._id} className="bg-gray-800">
-              <td className="border p-2">{food.foodName}</td>
-              <td className="border p-2">${food.foodPrice}</td>
-              <td className="border p-2">{food.foodQuantity}</td>
-              <td className="border p-2">{food.pickupLocation}</td>
-              <td className="space-x-2 border p-2">
+  <h2 className="mb-8 text-4xl font-extrabold text-center text-amber-800">Manage My Foods</h2>
+
+  <div className="overflow-x-auto rounded-xl shadow-lg">
+    <table className="min-w-full table-auto border-collapse bg-white text-gray-800">
+      <thead>
+        <tr className="bg-gradient-to-r from-amber-500 to-amber-700 text-white">
+          <th className="border p-4 text-left text-lg font-semibold">Name</th>
+          <th className="border p-4 text-left text-lg font-semibold">Price</th>
+          <th className="border p-4 text-left text-lg font-semibold">Quantity</th>
+          <th className="border p-4 text-left text-lg font-semibold">Location</th>
+          <th className="border p-4 text-left text-lg font-semibold">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {foods.map((food) => (
+          <tr key={food._id} className="even:bg-amber-50 odd:bg-white hover:bg-amber-100">
+            <td className="border p-4 font-medium text-gray-700">{food.foodName}</td>
+            <td className="border p-4 font-medium text-gray-700">${food.foodPrice}</td>
+            <td className="border p-4 font-medium text-gray-700">{food.foodQuantity}</td>
+            <td className="border p-4 font-medium text-gray-700">{food.pickupLocation}</td>
+            <td className="border p-4">
+              <div className="flex items-center gap-2">
                 <button
-                  className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-                  onClick={() => setEditingFood(food)} // Open update modal
+                  className="rounded-lg bg-blue-500 px-4 py-2 text-white font-medium shadow-md hover:bg-blue-600 transition-all duration-300"
+                  onClick={() => setEditingFood(food)}
                 >
                   Update
                 </button>
                 <button
-                  className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
-                  onClick={() => handleDelete(food._id)} // Delete food
+                  className="rounded-lg bg-red-500 px-4 py-2 text-white font-medium shadow-md hover:bg-red-600 transition-all duration-300"
+                  onClick={() => handleDelete(food._id)}
                 >
                   Delete
                 </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+              </div>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
 
-      {editingFood && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="w-96 rounded-lg bg-gray-800 p-6 shadow-lg">
-            <h3 className="mb-4 text-lg font-bold">Update Food</h3>
-            <input
-              type="text"
-              defaultValue={editingFood.foodName}
-              onChange={(e) =>
-                setEditingFood({ ...editingFood, foodName: e.target.value })
-              }
-              className="mb-2 w-full rounded-lg border p-2"
-            />
-            <input
-              type="number"
-              defaultValue={editingFood.foodPrice}
-              onChange={(e) =>
-                setEditingFood({ ...editingFood, foodPrice: e.target.value })
-              }
-              className="mb-2 w-full rounded-lg border p-2"
-            />
-            <input
-              type="number"
-              defaultValue={editingFood.foodQuantity}
-              onChange={(e) =>
-                setEditingFood({ ...editingFood, foodQuantity: e.target.value })
-              }
-              className="mb-2 w-full rounded-lg border p-2"
-            />
-            <input
-              type="text"
-              defaultValue={editingFood.pickupLocation}
-              onChange={(e) =>
-                setEditingFood({
-                  ...editingFood,
-                  pickupLocation: e.target.value,
-                })
-              }
-              className="mb-2 w-full rounded-lg border p-2"
-            />
-            <div className="flex justify-end gap-2">
-              <button
-                className="rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
-                onClick={() =>
-                  handleUpdate(editingFood._id, {
-                    foodName: editingFood.foodName,
-                    foodPrice: editingFood.foodPrice,
-                    foodQuantity: editingFood.foodQuantity,
-                    pickupLocation: editingFood.pickupLocation,
-                  })
-                }
-              >
-                Save
-              </button>
-              <button
-                className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
-                onClick={() => setEditingFood(null)}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
+  {editingFood && (
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+      <div className="w-96 rounded-xl bg-white p-6 shadow-lg">
+        <h3 className="mb-4 text-center text-xl font-bold text-gray-800">Update Food</h3>
+        <input
+          type="text"
+          defaultValue={editingFood.foodName}
+          onChange={(e) => setEditingFood({ ...editingFood, foodName: e.target.value })}
+          className="mb-4 w-full rounded-lg border border-gray-300 p-3 text-gray-700 focus:ring-2 focus:ring-amber-500"
+        />
+        <input
+          type="number"
+          defaultValue={editingFood.foodPrice}
+          onChange={(e) => setEditingFood({ ...editingFood, foodPrice: e.target.value })}
+          className="mb-4 w-full rounded-lg border border-gray-300 p-3 text-gray-700 focus:ring-2 focus:ring-amber-500"
+        />
+        <input
+          type="number"
+          defaultValue={editingFood.foodQuantity}
+          onChange={(e) => setEditingFood({ ...editingFood, foodQuantity: e.target.value })}
+          className="mb-4 w-full rounded-lg border border-gray-300 p-3 text-gray-700 focus:ring-2 focus:ring-amber-500"
+        />
+        <input
+          type="text"
+          defaultValue={editingFood.pickupLocation}
+          onChange={(e) => setEditingFood({ ...editingFood, pickupLocation: e.target.value })}
+          className="mb-4 w-full rounded-lg border border-gray-300 p-3 text-gray-700 focus:ring-2 focus:ring-amber-500"
+        />
+        <div className="flex justify-end gap-2">
+          <button
+            className="rounded-lg bg-green-500 px-4 py-2 text-white font-medium hover:bg-green-600 transition-all duration-300"
+            onClick={() => handleUpdate(editingFood._id, {
+              foodName: editingFood.foodName,
+              foodPrice: editingFood.foodPrice,
+              foodQuantity: editingFood.foodQuantity,
+              pickupLocation: editingFood.pickupLocation,
+            })}
+          >
+            Save
+          </button>
+          <button
+            className="rounded-lg bg-red-500 px-4 py-2 text-white font-medium hover:bg-red-600 transition-all duration-300"
+            onClick={() => setEditingFood(null)}
+          >
+            Cancel
+          </button>
         </div>
-      )}
+      </div>
     </div>
+  )}
+</div>
+
   );
 }
 
