@@ -188,12 +188,12 @@ function Navlinks() {
 
           {/* Mobile Navigation */}
           {isMenuOpen && (
-            <nav className="flex flex-col items-start gap-6 border-t border-amber-200 pb-6 lg:hidden">
+            <nav className="mt-2 flex flex-col items-start gap-6 border-t border-amber-200 pb-6 lg:hidden">
               {mainNavLinks.map((link) => (
                 <NavLink
                   key={link.to}
                   to={link.to}
-                  className="group relative text-amber-800 hover:text-amber-600"
+                  className="mt-2 group relative text-amber-800 hover:text-amber-600"
                   onClick={() => handleNavigation(link.to)}
                 >
                   {link.label}
@@ -204,46 +204,64 @@ function Navlinks() {
               {user && (
                 <>
                   <div className="my-2 w-full border-t border-amber-200"></div>
-                  <span className="text-sm font-semibold text-amber-600">
+                  {/* <span className="text-sm font-semibold text-amber-600">
                     Dashboard
-                  </span>
+                  </span> */}
                   <NavLink
                     to="/addfood"
-                    className="group relative pl-4 text-amber-800 hover:text-amber-600"
+                    className="group relative text-amber-800 hover:text-amber-600"
                     onClick={() => handleNavigation("/addfood")}
                   >
                     Add Food
+                  <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
                   </NavLink>
                   <NavLink
                     to="/managemyfoods"
-                    className="group relative pl-4 text-amber-800 hover:text-amber-600"
+                    className="group relative text-amber-800 hover:text-amber-600"
                     onClick={() => handleNavigation("/managemyfoods")}
                   >
                     Manage My Foods
+                    <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
                   </NavLink>
                   <NavLink
                     to="/myfoodrequest"
-                    className="group relative pl-4 text-amber-800 hover:text-amber-600"
+                    className="group relative text-amber-800 hover:text-amber-600"
                     onClick={() => handleNavigation("/myfoodrequest")}
                   >
                     My Food Request
+                    <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
                   </NavLink>
 
                   <div className="my-2 w-full border-t border-amber-200"></div>
-                  <div className="flex items-center gap-2">
-                    <img
-                      className="h-8 w-8 rounded-full border-2 border-amber-500"
-                      src={user.photoURL}
-                      alt="User Profile"
-                    />
-                  </div>
-                  <button
-                    onClick={handleLogout}
-                    className="flex items-center gap-2 text-amber-800 hover:text-amber-600"
-                  >
-                    <FiLogOut className="h-5 w-5" />
-                    <span>Logout</span>
-                  </button>
+                  <div className="flex items-center justify-between px-4 py-2">
+ <div className="flex gap-3">
+   <img
+     className="h-10 w-10 rounded-full border-2 border-amber-500"
+     src={user.photoURL}
+     alt="User Profile"
+   />
+   {/* <span className="text-amber-800 font-medium">{user.displayName}</span> */}
+ </div>
+ 
+ <div className="ml-6 flex items-center gap-6">
+   <NavLink
+     to="/myprofile"  
+     className="flex items-center gap-2 text-amber-800 hover:text-amber-600"
+     onClick={() => handleNavigation("/myprofile")}
+   >
+     <FiUser className="h-5 w-5" />
+     Profile
+   </NavLink>
+   
+   <button
+     onClick={handleLogout}
+     className="flex items-center gap-2 text-amber-800 hover:text-amber-600"
+   >
+     <FiLogOut className="h-5 w-5" />
+     Logout
+   </button>
+ </div>
+</div>
                 </>
               )}
 
