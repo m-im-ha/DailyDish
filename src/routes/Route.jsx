@@ -10,6 +10,7 @@ import Managemyfoods from "../components/Managemyfoods";
 import Myfoodrequest from "../components/Myfoodrequest";
 import PrivateRoute from "./PrivateRoute";
 import FoodDetailsCard from "../components/FoodDetailsCard";
+import MyProfile from "../components/MyProfile";
 
 export const router = createBrowserRouter([
   {
@@ -53,6 +54,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <FoodDetailsCard />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myprofile",
+        element: (
+          <PrivateRoute>
+            <MyProfile />
           </PrivateRoute>
         ),
       },
