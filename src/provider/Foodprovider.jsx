@@ -57,7 +57,7 @@ export default function Foodprovider({ children }) {
             { withCredentials: true },
           )
           .then((res) => {
-            console.log("Cookie set:", res.data);
+            // console.log("Cookie set:", res.data);
             setUser({
               email: currentUser.email,
               displayName: currentUser.displayName,
