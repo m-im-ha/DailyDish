@@ -7,8 +7,11 @@ import "swiper/css/autoplay";
 import biriyani from "/assets/photos/biriyani.jpg";
 import roast from "/assets/photos/roast.jpg";
 import pancake from "/assets/photos/pancake.jpg";
+import { useNavigate } from "react-router-dom";
 
 function Banner() {
+  const navigate = useNavigate();
+
   const slides = [
     {
       image: pancake,
@@ -83,7 +86,7 @@ function Banner() {
                   </p>
 
                   {/* Button */}
-                  <button className="font-lato group relative overflow-hidden rounded-full bg-gradient-to-r from-amber-400 to-amber-600 px-8 py-3 font-bold text-white shadow-lg transition-all duration-300 hover:from-amber-500 hover:to-amber-700 hover:shadow-amber-500/50 md:px-10 md:py-4 lg:px-12 lg:text-lg">
+                  <button onClick={()=>navigate("/availablefoods")} className="font-lato group relative overflow-hidden rounded-full bg-gradient-to-r from-amber-400 to-amber-600 px-8 py-3 font-bold text-white shadow-lg transition-all duration-300 hover:from-amber-500 hover:to-amber-700 hover:shadow-amber-500/50 md:px-10 md:py-4 lg:px-12 lg:text-lg">
                     <span className="relative z-10 flex items-center justify-center">
                       {slide.button}
                       <svg

@@ -30,9 +30,6 @@ function FoodDetailsCard() {
         setIsLoading(true);
         const response = await axios.get(
           `https://dailydishserver.vercel.app/foods/foodDetails/${id}`,
-          {
-            withCredentials: true,
-          },
         );
         setFood(response.data);
       } catch (error) {
@@ -110,7 +107,7 @@ function FoodDetailsCard() {
 
   return (
     <div className="mx-auto max-w-3xl p-4">
-      <div className="mt-8 group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl">
+      <div className="group relative mt-8 overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl">
         {/* Image Container */}
         <div className="relative h-96 overflow-hidden">
           <img
