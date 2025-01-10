@@ -11,6 +11,7 @@ import Myfoodrequest from "../components/Myfoodrequest";
 import PrivateRoute from "./PrivateRoute";
 import FoodDetailsCard from "../components/FoodDetailsCard";
 import MyProfile from "../components/MyProfile";
+import Categories from "../components/Categories";
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
       {
         path: "/availablefoods",
         element: <Availablefoods />,
+      },
+      {
+        path: "/categories",
+        element: <Categories/>,
       },
       {
         path: "/addfood",

@@ -44,6 +44,7 @@ function Navlinks() {
   const mainNavLinks = [
     { to: "/", label: "Home" },
     { to: "/availablefoods", label: "Available Foods" },
+    { to: "/categories", label: "Categories" },
   ];
 
   return (
