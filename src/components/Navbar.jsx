@@ -2,7 +2,7 @@ import Navlinks from "./Navlinks";
 
 function Navbar() {
   return (
-    <div>
+    <div className="mb-10">
       <Navlinks />
     </div>
   );

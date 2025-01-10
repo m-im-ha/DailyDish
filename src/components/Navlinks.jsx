@@ -193,7 +193,7 @@ function Navlinks() {
                 <NavLink
                   key={link.to}
                   to={link.to}
-                  className="mt-2 group relative text-amber-800 hover:text-amber-600"
+                  className="group relative mt-2 text-amber-800 hover:text-amber-600"
                   onClick={() => handleNavigation(link.to)}
                 >
                   {link.label}
@@ -213,7 +213,7 @@ function Navlinks() {
                     onClick={() => handleNavigation("/addfood")}
                   >
                     Add Food
-                  <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
+                    <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
                   </NavLink>
                   <NavLink
                     to="/managemyfoods"
@@ -234,34 +234,34 @@ function Navlinks() {
 
                   <div className="my-2 w-full border-t border-amber-200"></div>
                   <div className="flex items-center justify-between px-4 py-2">
- <div className="flex gap-3">
-   <img
-     className="h-10 w-10 rounded-full border-2 border-amber-500"
-     src={user.photoURL}
-     alt="User Profile"
-   />
-   {/* <span className="text-amber-800 font-medium">{user.displayName}</span> */}
- </div>
- 
- <div className="ml-6 flex items-center gap-6">
-   <NavLink
-     to="/myprofile"  
-     className="flex items-center gap-2 text-amber-800 hover:text-amber-600"
-     onClick={() => handleNavigation("/myprofile")}
-   >
-     <FiUser className="h-5 w-5" />
-     Profile
-   </NavLink>
-   
-   <button
-     onClick={handleLogout}
-     className="flex items-center gap-2 text-amber-800 hover:text-amber-600"
-   >
-     <FiLogOut className="h-5 w-5" />
-     Logout
-   </button>
- </div>
-</div>
+                    <div className="flex gap-3">
+                      <img
+                        className="h-10 w-10 rounded-full border-2 border-amber-500"
+                        src={user.photoURL}
+                        alt="User Profile"
+                      />
+                      {/* <span className="text-amber-800 font-medium">{user.displayName}</span> */}
+                    </div>
+
+                    <div className="ml-6 flex items-center gap-6">
+                      <NavLink
+                        to="/myprofile"
+                        className="flex items-center gap-2 text-amber-800 hover:text-amber-600"
+                        onClick={() => handleNavigation("/myprofile")}
+                      >
+                        <FiUser className="h-5 w-5" />
+                        Profile
+                      </NavLink>
+
+                      <button
+                        onClick={handleLogout}
+                        className="flex items-center gap-2 text-amber-800 hover:text-amber-600"
+                      >
+                        <FiLogOut className="h-5 w-5" />
+                        Logout
+                      </button>
+                    </div>
+                  </div>
                 </>
               )}
 
