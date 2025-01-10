@@ -109,8 +109,8 @@ function FoodDetailsCard() {
   }
 
   return (
-    <div className="mx-auto max-w-4xl p-4">
-      <div className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl">
+    <div className="mx-auto max-w-3xl p-4">
+      <div className="mt-8 group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl">
         {/* Image Container */}
         <div className="relative h-96 overflow-hidden">
           <img

@@ -74,9 +74,12 @@ function Myfoodrequest() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h2 className="font-playfair mb-8 text-center text-4xl font-extrabold text-amber-800">
-        My Food Requests
-      </h2>
+      <div className="mb-12 w-full text-center">
+        <h1 className="mt-4 relative inline-block font-playfair text-4xl font-black tracking-tight text-amber-800 md:text-5xl">
+          <span className="relative z-10">My Requested Food</span>
+          <div className="absolute -bottom-2 left-0 h-3 w-full bg-amber-200/60"></div>
+        </h1>
+      </div>
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {foods.map((food) => (
           <div

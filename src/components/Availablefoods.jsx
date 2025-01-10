@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import FoodCard from "./FoodCard";
 import { FaSearch } from "react-icons/fa";
+import { BiSortAlt2 } from "react-icons/bi";
+import { BsGrid3X2GapFill, BsGrid3X3GapFill } from "react-icons/bs";
 
 function Availablefoods() {
   const [availablefoods, setAvailablefoods] = useState([]);
@@ -42,13 +44,15 @@ function Availablefoods() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50 to-amber-100 px-4 py-12 sm:px-6 lg:px-8">
       <div className="container mx-auto">
-    
-        <div className="mb-16 text-center">
+        {/* Header Section */}
+        <div className="mb-10 text-center">
           <h1 className="font-playfair relative inline-block text-4xl font-black tracking-tight text-amber-800 md:text-5xl">
             <span className="relative z-10">Available Foods</span>
             <div className="absolute -bottom-2 left-0 h-3 w-full bg-amber-200/60"></div>
           </h1>
-          <p className="font-lato mt-4 text-lg text-amber-700">Discover delicious meals waiting for you</p>
+          <p className="font-lato mt-4 text-lg text-amber-700">
+            Discover delicious meals waiting for you
+          </p>
         </div>
 
         {/* Search Section */}
@@ -67,59 +71,43 @@ function Availablefoods() {
 
         {/* Controls Section */}
         <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:justify-between">
-          {/* Sort Buttons */}
-          <div className="flex flex-wrap gap-3">
-            <button
-              onClick={() => setSortKey("foodPrice")}
-              className={`group relative overflow-hidden rounded-full px-6 py-3 text-sm font-bold transition-all duration-300 sm:text-base ${
-                sortKey === "foodPrice"
-                  ? "bg-gradient-to-r from-amber-500 to-amber-700 text-white shadow-lg"
-                  : "bg-white text-amber-700 hover:shadow-lg"
-              }`}
+          {/* Sort Dropdown */}
+          <div className="relative group">
+            <select
+              value={sortKey}
+              onChange={(e) => setSortKey(e.target.value)}
+              className="appearance-none w-full sm:w-48 px-2 py-3 rounded-lg bg-white border-2 border-amber-200 text-amber-800 font-medium cursor-pointer hover:border-amber-300 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-200"
             >
-              <span className="relative z-10">Sort by Price</span>
-              {sortKey !== "foodPrice" && (
-                <div className="absolute inset-0 -translate-x-full transform bg-gradient-to-r from-amber-500 to-amber-700 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"></div>
-              )}
-            </button>
-
-            <button
-              onClick={() => setSortKey("expiredDate")}
-              className={`group relative overflow-hidden rounded-full px-6 py-3 text-sm font-bold transition-all duration-300 sm:text-base ${
-                sortKey === "expiredDate"
-                  ? "bg-gradient-to-r from-amber-500 to-amber-700 text-white shadow-lg"
-                  : "bg-white text-amber-700 hover:shadow-lg"
-              }`}
-            >
-              <span className="relative z-10">Sort by Expired Date</span>
-              {sortKey !== "expiredDate" && (
-                <div className="absolute inset-0 -translate-x-full transform bg-gradient-to-r from-amber-500 to-amber-700 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"></div>
-              )}
-            </button>
+              <option value="foodPrice">Sort by Price</option>
+              <option value="expiredDate">Sort by Expired Date</option>
+            </select>
+            <BiSortAlt2 className="ml-2 absolute right-1 top-1/2 -translate-y-1/2 text-amber-500 pointer-events-none w-5 h-5" />
           </div>
 
-          {/* Layout Toggle */}
+          {/* Layout Toggle Icons */}
           <div className="flex gap-3">
             <button
               onClick={() => setIsThreeColumn(true)}
-              className={`rounded-full px-6 py-3 text-sm font-bold transition-all duration-300 sm:text-base ${
+              className={`p-3 rounded-lg transition-all duration-300 ${
                 isThreeColumn
-                  ? "bg-gradient-to-r from-amber-500 to-amber-700 text-white shadow-lg"
-                  : "bg-white text-amber-700 hover:bg-amber-100"
+                  ? 'bg-gradient-to-r from-amber-500 to-amber-700 text-white shadow-lg'
+                  : 'bg-white text-amber-700 hover:bg-amber-50'
               }`}
+              title="3-Column Layout"
             >
-              3-Column
+              <BsGrid3X3GapFill className="w-5 h-5" />
             </button>
 
             <button
               onClick={() => setIsThreeColumn(false)}
-              className={`rounded-full px-6 py-3 text-sm font-bold transition-all duration-300 sm:text-base ${
+              className={`p-3 rounded-lg transition-all duration-300 ${
                 !isThreeColumn
-                  ? "bg-gradient-to-r from-amber-500 to-amber-700 text-white shadow-lg"
-                  : "bg-white text-amber-700 hover:bg-amber-100"
+                  ? 'bg-gradient-to-r from-amber-500 to-amber-700 text-white shadow-lg'
+                  : 'bg-white text-amber-700 hover:bg-amber-50'
               }`}
+              title="2-Column Layout"
             >
-              2-Column
+              <BsGrid3X2GapFill className="w-5 h-5 rotate-90" />
             </button>
           </div>
         </div>

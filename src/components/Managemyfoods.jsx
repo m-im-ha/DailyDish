@@ -90,7 +90,7 @@ function Managemyfoods() {
   return (
     <div className="container mx-auto p-2 sm:p-4">
       <div className="mb-8 w-full text-center">
-        <h1 className="relative inline-block font-playfair text-4xl font-black tracking-tight text-amber-800 md:text-5xl">
+        <h1 className="mt-10 relative inline-block font-playfair text-4xl font-black tracking-tight text-amber-800 md:text-5xl">
           <span className="relative z-10">Manage My Foods</span>
           <div className="absolute -bottom-2 left-0 h-3 w-full bg-amber-200/60"></div>
         </h1>
@@ -110,7 +110,7 @@ function Managemyfoods() {
           </button>
         </div>
       ) : (
-        <div className="w-full overflow-x-auto rounded-xl border border-amber-100 shadow-xl">
+        <div className="w-full overflow-x-auto rounded-xl border border-amber-100 shadow-xl mb-8">
           <table className="min-w-full table-auto border-collapse bg-white text-gray-800">
             <thead>
               <tr className="bg-gradient-to-r from-amber-500 to-amber-700 text-white">
