@@ -14,6 +14,7 @@ import MyProfile from "../components/MyProfile";
 import Categories from "../components/Categories";
 import Fastfood from "../components/Fastfood";
 import Vegetarian from "../components/Vegetarian";
+import Dessert from "../components/Dessert";
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
       {
         path: "/category/vegetarian-food",
         element: <Vegetarian/>,
+      },
+      {
+        path: "/category/dessert-food",
+        element: <Dessert/>,
       },
       {
         path: "/addfood",
