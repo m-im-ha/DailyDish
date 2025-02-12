@@ -1,8 +1,8 @@
 import { useState } from "react";
-// import cheeseburger from "/assets/photos/cheeseburger.jpg";
-// import pizza from "/assets/photos/pizza.jpg";
-// import frenchFries from "/assets/photos/french-fries.jpg";
-// import friedChicken from "/assets/photos/fried-chicken.jpg";
+import vegetableStirFry from "/assets/photos/vegetable-stir-fry.jpg";
+import margherita from "/assets/photos/margherita.jpg";
+import quinoa from "/assets/photos/quinoa-salad.jpg";
+import lasagna from "/assets/photos/lasagna.jpg";
 
 const vegetarianFoods = [
   {
@@ -11,7 +11,7 @@ const vegetarianFoods = [
     description:
       "A colorful mix of fresh vegetables stir-fried in a savory sauce.",
     price: 7.99,
-    image: "https://via.placeholder.com/150",
+    image: vegetableStirFry,
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ const vegetarianFoods = [
     description:
       "A classic pizza topped with fresh tomatoes, mozzarella, and basil.",
     price: 9.99,
-    image: "https://via.placeholder.com/150",
+    image: margherita,
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const vegetarianFoods = [
     description:
       "A healthy salad made with quinoa, mixed greens, cherry tomatoes, and a lemon vinaigrette.",
     price: 6.99,
-    image: "https://via.placeholder.com/150",
+    image: quinoa,
   },
   {
     id: 4,
@@ -35,7 +35,7 @@ const vegetarianFoods = [
     description:
       "Layers of pasta, roasted vegetables, and creamy béchamel sauce.",
     price: 10.99,
-    image: "https://via.placeholder.com/150",
+    image: lasagna,
   },
   {
     id: 5,
