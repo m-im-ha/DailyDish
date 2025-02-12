@@ -12,6 +12,7 @@ import PrivateRoute from "./PrivateRoute";
 import FoodDetailsCard from "../components/FoodDetailsCard";
 import MyProfile from "../components/MyProfile";
 import Categories from "../components/Categories";
+import Fastfood from "../components/Fastfood";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
       {
         path: "/categories",
         element: <Categories />,
+      },
+      {
+        path: "/category/fast-food",
+        element: <Fastfood />,
       },
       {
         path: "/addfood",
