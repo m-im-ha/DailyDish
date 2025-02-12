@@ -37,38 +37,38 @@ const vegetarianFoods = [
     price: 10.99,
     image: lasagna,
   },
-  {
-    id: 5,
-    name: "Falafel Wrap",
-    description:
-      "Crispy falafel balls wrapped in a warm pita with hummus, lettuce, and tahini sauce.",
-    price: 5.99,
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    id: 6,
-    name: "Vegetable Sushi Roll",
-    description:
-      "Sushi rolls filled with avocado, cucumber, and carrots, served with soy sauce.",
-    price: 8.99,
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    id: 7,
-    name: "Stuffed Bell Peppers",
-    description:
-      "Bell peppers stuffed with a mixture of rice, beans, and spices, baked to perfection.",
-    price: 7.49,
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    id: 8,
-    name: "Vegetable Curry",
-    description:
-      "A flavorful curry made with a mix of vegetables and coconut milk, served with rice.",
-    price: 8.99,
-    image: "https://via.placeholder.com/150",
-  },
+//   {
+//     id: 5,
+//     name: "Falafel Wrap",
+//     description:
+//       "Crispy falafel balls wrapped in a warm pita with hummus, lettuce, and tahini sauce.",
+//     price: 5.99,
+//     image: "https://via.placeholder.com/150",
+//   },
+//   {
+//     id: 6,
+//     name: "Vegetable Sushi Roll",
+//     description:
+//       "Sushi rolls filled with avocado, cucumber, and carrots, served with soy sauce.",
+//     price: 8.99,
+//     image: "https://via.placeholder.com/150",
+//   },
+//   {
+//     id: 7,
+//     name: "Stuffed Bell Peppers",
+//     description:
+//       "Bell peppers stuffed with a mixture of rice, beans, and spices, baked to perfection.",
+//     price: 7.49,
+//     image: "https://via.placeholder.com/150",
+//   },
+//   {
+//     id: 8,
+//     name: "Vegetable Curry",
+//     description:
+//       "A flavorful curry made with a mix of vegetables and coconut milk, served with rice.",
+//     price: 8.99,
+//     image: "https://via.placeholder.com/150",
+//   },
 ];
 
 function Vegetarian() {
