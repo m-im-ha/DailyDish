@@ -13,6 +13,7 @@ import FoodDetailsCard from "../components/FoodDetailsCard";
 import MyProfile from "../components/MyProfile";
 import Categories from "../components/Categories";
 import Fastfood from "../components/Fastfood";
+import Vegetarian from "../components/Vegetarian";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path: "/category/fast-food",
         element: <Fastfood />,
+      },
+      {
+        path: "/category/vegetarian-food",
+        element: <Vegetarian/>,
       },
       {
         path: "/addfood",

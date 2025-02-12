@@ -17,7 +17,7 @@ const categories = [
     id: 2,
     name: "Vegetarian",
     icon: <FaAppleAlt />,
-    // path: "/category/vegetarian",
+    path: "/category/vegetarian-food",
   },
   {
     id: 3,
