@@ -1,7 +1,7 @@
 import { useState } from "react";
-// import vegetableStirFry from "/assets/photos/vegetable-stir-fry.jpg";
-// import margherita from "/assets/photos/margherita.jpg";
-// import quinoa from "/assets/photos/quinoa-salad.jpg";
+import chocolateCake from "/assets/photos/chocolate-cake.jpg";
+import cheesecake from "/assets/photos/cheesecake.jpg";
+import tiramisu from "/assets/photos/tiramisu.jpg";
 // import lasagna from "/assets/photos/lasagna.jpg";
 
 const desserts = [
@@ -10,21 +10,21 @@ const desserts = [
       name: 'Chocolate Cake',
       description: 'Rich and moist chocolate cake topped with creamy chocolate frosting.',
       price: 6.99,
-      image: 'https://via.placeholder.com/150',
+      image: chocolateCake,
     },
     {
       id: 2,
       name: 'Cheesecake',
       description: 'Creamy New York-style cheesecake with a graham cracker crust.',
       price: 7.99,
-      image: 'https://via.placeholder.com/150',
+      image: cheesecake,
     },
     {
       id: 3,
       name: 'Tiramisu',
       description: 'Classic Italian dessert made with layers of coffee-soaked ladyfingers and mascarpone cream.',
       price: 8.49,
-      image: 'https://via.placeholder.com/150',
+      image: tiramisu,
     },
     {
       id: 4,
