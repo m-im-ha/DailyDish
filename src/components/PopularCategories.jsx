@@ -11,7 +11,7 @@ const categories = [
     id: 1,
     name: "Fast Food",
     icon: <FaHamburger />,
-    // path: "/category/fast-food",
+    path: "/category/fast-food",
   },
   {
     id: 2,
@@ -44,7 +44,7 @@ function PopularCategories() {
     {categories.map((category) => (
       <Link
         key={category.id}
-        // to={category.path}
+        to={category.path}
         className="flex flex-col items-center justify-center rounded-xl bg-white shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
       >
         {/* Icon Section */}
